@@ -29,9 +29,9 @@ public class NoteController
     }
 
     //Instantiateを担当するクラス
-    public void SetUp(GameObject notePrefab, Transform transform)
+    public void SetUp(GameObject notePrefab, Vector3 position)
     {
-        GameObject noteObject = GameObject.Instantiate(notePrefab, transform.position, Quaternion.identity);
+        GameObject noteObject = GameObject.Instantiate(notePrefab, position, Quaternion.identity);
         m_Note.NoteObject = noteObject;
         m_FirstPos = m_Note.NoteObject.transform.position;
 

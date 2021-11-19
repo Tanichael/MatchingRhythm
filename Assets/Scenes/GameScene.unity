@@ -700,7 +700,7 @@ MonoBehaviour:
   m_Ugly: {fileID: 3619682941569061454, guid: 0319dc9b5f0054b8385b934576ede3c1, type: 3}
   m_BaseSpawnPoint: {fileID: 1694298069}
   m_BaseBeatPoint: {fileID: 1030157003}
-  m_AudioSource: {fileID: 0}
+  m_AudioSource: {fileID: 1485024998}
 --- !u!4 &1060717919
 Transform:
   m_ObjectHideFlags: 0
@@ -760,7 +760,7 @@ GameObject:
   - component: {fileID: 1485024999}
   - component: {fileID: 1485024998}
   m_Layer: 0
-  m_Name: AudioSource
+  m_Name: GameAudio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

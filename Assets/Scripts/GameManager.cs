@@ -73,8 +73,8 @@ public class GameManager : MonoBehaviour
 
             Note note = new Note(timing, place, type);
 
-            Transform spawnPoint = m_BaseSpawnPoint;
-            spawnPoint.position = spawnPoint.position + new Vector3(ms_Range * place, 0f, 0f);
+            Vector3 spawnPoint = new Vector3();
+            spawnPoint = m_BaseSpawnPoint.position + new Vector3(ms_Range * (place-1f), 0f, 0f);
 
             if (type == "beautiful")
             {
