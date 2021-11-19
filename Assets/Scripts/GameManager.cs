@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     private readonly float ms_Range = 1.7f;
     private readonly float ms_MarginTime = 2 * 1000f;
+    private readonly float ms_CheckRange = 120f;
+    private readonly float ms_BeatRange = 80f;
 
     private List<Note> m_Notes;
     private bool m_IsPlaying;
@@ -52,8 +54,55 @@ public class GameManager : MonoBehaviour
                 m_Notes[m_NoteIndex].NoteController.Fire(m_Distance, ms_MarginTime);
                 m_NoteIndex++;
             });
-        
-            
+
+        this.UpdateAsObservable()
+            .Where(_ => m_IsPlaying)
+            .Where(_ => Input.GetKeyDown(KeyCode.A))
+            .Subscribe(_ =>
+            {
+                beat(Time.time * 1000 - m_StartTime, 0,"beautiful");
+            });
+
+        this.UpdateAsObservable()
+            .Where(_ => m_IsPlaying)
+            .Where(_ => Input.GetKeyDown(KeyCode.S))
+            .Subscribe(_ =>
+            {
+                beat(Time.time * 1000 - m_StartTime, 1, "beautiful");
+            });
+
+        this.UpdateAsObservable()
+            .Where(_ => m_IsPlaying)
+            .Where(_ => Input.GetKeyDown(KeyCode.D))
+            .Subscribe(_ =>
+            {
+                beat(Time.time * 1000 - m_StartTime, 2, "beautiful");
+            });
+
+        this.UpdateAsObservable()
+            .Where(_ => m_IsPlaying)
+            .Where(_ => Input.GetKeyDown(KeyCode.J))
+            .Subscribe(_ =>
+            {
+                beat(Time.time * 1000 - m_StartTime, 0, "ugly");
+            });
+
+        this.UpdateAsObservable()
+            .Where(_ => m_IsPlaying)
+            .Where(_ => Input.GetKeyDown(KeyCode.K))
+            .Subscribe(_ =>
+            {
+                beat(Time.time * 1000 - m_StartTime, 1, "ugly");
+            });
+
+        this.UpdateAsObservable()
+            .Where(_ => m_IsPlaying)
+            .Where(_ => Input.GetKeyDown(KeyCode.L))
+            .Subscribe(_ =>
+            {
+                beat(Time.time * 1000 - m_StartTime, 2, "ugly");
+            });
+
     }
 
     private void LoadChart()
@@ -102,6 +151,48 @@ public class GameManager : MonoBehaviour
         m_StartTime = Time.time * 1000;
         m_IsPlaying = true;
         Debug.Log("Start!!");
+    }
+
+
+    //本当はこの中の詳細な処理は別のところに委譲したい Noteクラスとか
+    private void beat(float timing, int place, string type)
+    {
+        float minDiff = -1f;
+        int minDiffIndex = -1;
+
+        //該当するノーツを探す処理
+        for(int i = 0; i < m_Notes.Count; i++)
+        {
+            if (m_Notes[i].Timing > 0)
+            {
+                float diff = Math.Abs(m_Notes[i].Timing - timing);
+                if (minDiff == -1 || minDiff > diff)
+                {
+                    minDiff = diff;
+                    minDiffIndex = i;
+                }
+            }
+        }
+
+        if(minDiff != -1 & minDiff < ms_CheckRange) //スルーしてない時
+        {
+            if(minDiff < ms_BeatRange & m_Notes[minDiffIndex].Type == type & m_Notes[minDiffIndex].Place == place)
+            {
+                m_Notes[minDiffIndex].Timing = -1;
+                m_Notes[minDiffIndex].NoteObject.SetActive(false);
+                Debug.Log("beat " + type + " success.");
+            }
+            else
+            {
+                m_Notes[minDiffIndex].Timing = -1;
+                m_Notes[minDiffIndex].NoteObject.SetActive(false);
+                Debug.Log("beat " + type + " failure.");
+            }
+        }
+        else //スルーしてる時
+        {
+            Debug.Log("through");
+        }
     }
 
 }

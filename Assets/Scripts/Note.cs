@@ -34,6 +34,10 @@ public class Note
         {
             return m_Timing;
         }
+        set
+        {
+            m_Timing = value;
+        }
     }
 
     public int Place
