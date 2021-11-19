@@ -9,6 +9,7 @@ using UniRx.Triggers;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private string m_FilePath;
+    [SerializeField] private string m_ClipPath;
     [SerializeField] private Button m_Play;
     [SerializeField] private Button m_SetChart;
 
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Transform m_BaseSpawnPoint;
     [SerializeField] Transform m_BaseBeatPoint;
+    [SerializeField] AudioSource m_AudioSource;
 
     private readonly float ms_Range = 1.7f;
     private readonly float ms_MarginTime = 2 * 1000f;
@@ -54,18 +56,13 @@ public class GameManager : MonoBehaviour
             
     }
 
-    private void Play()
-    {
-        m_StartTime = Time.time * 1000;
-        m_IsPlaying = true;
-        Debug.Log("Start!!");
-    }
-
     private void LoadChart()
     {
         m_Notes = new List<Note>();
 
         string jsonText = Resources.Load<TextAsset>(m_FilePath).ToString();
+        m_AudioSource.clip = (AudioClip)Resources.Load(m_ClipPath);
+
         JsonNode json = JsonNode.Parse(jsonText);
 
         foreach(var noteData in json["notes"])
@@ -96,6 +93,15 @@ public class GameManager : MonoBehaviour
 
         }
 
+    }
+
+    private void Play()
+    {
+        m_AudioSource.Stop();
+        m_AudioSource.Play();
+        m_StartTime = Time.time * 1000;
+        m_IsPlaying = true;
+        Debug.Log("Start!!");
     }
 
 }
