@@ -14,7 +14,7 @@ TagManager:
   - 
   - 
   - Background
-  - 
+  - NoteViews
   - 
   - 
   - 
@@ -40,6 +40,9 @@ TagManager:
   m_SortingLayers:
   - name: Background
     uniqueID: 2865042573
+    locked: 0
+  - name: NoteViews
+    uniqueID: 1870453257
     locked: 0
   - name: Default
     uniqueID: 0

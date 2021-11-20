@@ -180,7 +180,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("Start!!");
     }
 
-
     //本当はこの中の詳細な処理は別のところに委譲したい Noteクラスとか
     private void beat(float timing, int place, string type)
     {
@@ -206,7 +205,8 @@ public class GameManager : MonoBehaviour
             if(minDiff < ms_BeatRange & m_Notes[minDiffIndex].Type == type & m_Notes[minDiffIndex].Place == place)
             {
                 m_Notes[minDiffIndex].Timing = -1;
-                m_Notes[minDiffIndex].NoteObject.SetActive(false);
+                m_Notes[minDiffIndex].NoteObject.SetActive(false); //Noteクラスのstateを変えるとかでは？
+                m_Notes[minDiffIndex].NoteState = Note.State.Off;
 
                 MessageEffectSubject.OnNext("good");
                 Debug.Log("beat " + type + " success.");
@@ -215,6 +215,7 @@ public class GameManager : MonoBehaviour
             {
                 m_Notes[minDiffIndex].Timing = -1;
                 m_Notes[minDiffIndex].NoteObject.SetActive(false);
+                m_Notes[minDiffIndex].NoteState = Note.State.Off;
 
                 MessageEffectSubject.OnNext("failure");
                 Debug.Log("beat " + type + " failure.");
