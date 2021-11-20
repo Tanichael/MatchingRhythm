@@ -20,8 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform m_BaseBeatPoint;
     [SerializeField] AudioSource m_AudioSource;
 
-    private readonly float ms_Range = 1.7f;
-    private readonly float ms_JudgeRange = 1.0f;
+    private readonly float ms_Range = 1.4f;
+    private readonly float ms_JudgeRange = 0.8f;
     private readonly float ms_MarginTime = 2 * 1000f;
     private readonly float ms_CheckRange = 120f;
     private readonly float ms_BeatRange = 80f;
