@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioSource m_AudioSource;
 
     private readonly float ms_Range = 1.7f;
+    private readonly float ms_JudgeRange = 1.0f;
     private readonly float ms_MarginTime = 2 * 1000f;
     private readonly float ms_CheckRange = 120f;
     private readonly float ms_BeatRange = 80f;
@@ -233,11 +234,11 @@ public class GameManager : MonoBehaviour
         Vector3 startPos = Camera.main.ScreenToWorldPoint(startMousePos);
 
         //placeの判定処理
-        if (startPos.x < -1f)
+        if (startPos.x < -ms_JudgeRange)
         {
             place = 0;
         }
-        else if (startPos.x > 1f)
+        else if (startPos.x > ms_JudgeRange)
         {
             place = 2;
         }
