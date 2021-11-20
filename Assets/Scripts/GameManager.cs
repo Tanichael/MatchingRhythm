@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     private readonly float ms_MarginTime = 2 * 1000f;
     private readonly float ms_CheckRange = 120f;
     private readonly float ms_BeatRange = 80f;
+    private readonly float ms_FlickRange = 0.2f;
 
     private List<Note> m_Notes;
     private bool m_IsPlaying;
@@ -31,11 +32,38 @@ public class GameManager : MonoBehaviour
     private float m_Distance;
     private int m_NoteIndex;
 
+    private Vector3 m_StartMousePos;
+    private Vector3 m_EndPos;
+    private float m_StartTiming;
+    private float m_EndTiming;
+    private bool m_DoStartFlick;
+
+    private Subject<string> SoundEffectSubject = new Subject<string>();
+
+    public IObservable<string> OnSoundEffect
+    {
+        get
+        {
+            return SoundEffectSubject;
+        }
+    }
+
+    private Subject<string> MessageEffectSubject = new Subject<string>();
+
+    public IObservable<string> OnMessageEffect
+    {
+        get
+        {
+            return MessageEffectSubject;
+        }
+    }
+
     private void OnEnable()
     {
         m_Distance = Math.Abs(m_BaseBeatPoint.position.y - m_BaseSpawnPoint.position.y);
         m_IsPlaying = false;
         m_NoteIndex = 0;
+        m_DoStartFlick = false;
 
         m_Play.onClick
             .AsObservable()
@@ -57,50 +85,48 @@ public class GameManager : MonoBehaviour
 
         this.UpdateAsObservable()
             .Where(_ => m_IsPlaying)
-            .Where(_ => Input.GetKeyDown(KeyCode.A))
+            .Where(_ => Input.GetMouseButtonDown(0))
             .Subscribe(_ =>
             {
-                beat(Time.time * 1000 - m_StartTime, 0,"beautiful");
+                m_StartMousePos = Input.mousePosition;
+                m_StartTiming = Time.time * 1000;
+                m_DoStartFlick = true; //フリックスタートフラグを立てる
             });
 
         this.UpdateAsObservable()
             .Where(_ => m_IsPlaying)
-            .Where(_ => Input.GetKeyDown(KeyCode.S))
+            .Where(_ => m_DoStartFlick) //フリックスタートしてるか
+            .Where(_ => Input.GetMouseButton(0))
+            .Where(_ => Mathf.Abs(Input.mousePosition.x - m_StartMousePos.x) >= ms_FlickRange) //フリックしたか否か
             .Subscribe(_ =>
             {
-                beat(Time.time * 1000 - m_StartTime, 1, "beautiful");
-            });
+                m_EndPos = Input.mousePosition;
+                m_EndTiming = Time.time * 1000;
 
-        this.UpdateAsObservable()
-            .Where(_ => m_IsPlaying)
-            .Where(_ => Input.GetKeyDown(KeyCode.D))
-            .Subscribe(_ =>
-            {
-                beat(Time.time * 1000 - m_StartTime, 2, "beautiful");
-            });
+                float timing;
+                string type;
+                int place;
 
-        this.UpdateAsObservable()
-            .Where(_ => m_IsPlaying)
-            .Where(_ => Input.GetKeyDown(KeyCode.J))
-            .Subscribe(_ =>
-            {
-                beat(Time.time * 1000 - m_StartTime, 0, "ugly");
-            });
+                //placeの判定処理
+                place = CalcPlace(m_StartMousePos);
 
-        this.UpdateAsObservable()
-            .Where(_ => m_IsPlaying)
-            .Where(_ => Input.GetKeyDown(KeyCode.K))
-            .Subscribe(_ =>
-            {
-                beat(Time.time * 1000 - m_StartTime, 1, "ugly");
-            });
+                //タイミングの判定処理
+                timing = (m_EndTiming + m_StartTiming) / 2 - m_StartTime;
 
-        this.UpdateAsObservable()
-            .Where(_ => m_IsPlaying)
-            .Where(_ => Input.GetKeyDown(KeyCode.L))
-            .Subscribe(_ =>
-            {
-                beat(Time.time * 1000 - m_StartTime, 2, "ugly");
+                if (m_EndPos.x - m_StartMousePos.x > 0) //右フリックの時
+                {
+                    type = "beautiful";
+                    beat(timing, place, type);
+                    SoundEffectSubject.OnNext(type);
+                }
+                else if(m_EndPos.x - m_StartMousePos.x < 0) //左フリックの時
+                {
+                    type = "ugly";
+                    beat(timing, place, type);
+                    SoundEffectSubject.OnNext(type);
+                }
+                
+                m_DoStartFlick = false; //フリック完了をフラグで管理
             });
 
     }
@@ -180,12 +206,16 @@ public class GameManager : MonoBehaviour
             {
                 m_Notes[minDiffIndex].Timing = -1;
                 m_Notes[minDiffIndex].NoteObject.SetActive(false);
+
+                MessageEffectSubject.OnNext("good");
                 Debug.Log("beat " + type + " success.");
             }
             else
             {
                 m_Notes[minDiffIndex].Timing = -1;
                 m_Notes[minDiffIndex].NoteObject.SetActive(false);
+
+                MessageEffectSubject.OnNext("failure");
                 Debug.Log("beat " + type + " failure.");
             }
         }
@@ -193,6 +223,30 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("through");
         }
+    }
+
+    //ピクセルの座標を与えられたときにplaceに変換して返す関数
+    private int CalcPlace(Vector3 startMousePos)
+    {
+        int place = -1;
+
+        Vector3 startPos = Camera.main.ScreenToWorldPoint(startMousePos);
+
+        //placeの判定処理
+        if (startPos.x < -1f)
+        {
+            place = 0;
+        }
+        else if (startPos.x > 1f)
+        {
+            place = 2;
+        }
+        else
+        {
+            place = 1; //とりあえず他の時は1ってことにしとく
+        }
+
+        return place;
     }
 
 }

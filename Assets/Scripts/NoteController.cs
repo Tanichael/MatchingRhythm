@@ -41,7 +41,6 @@ public class NoteController
             {
                 m_Note.NoteObject.transform.position = new Vector3(m_FirstPos.x, m_FirstPos.y - m_Distance * (Time.time * 1000 - m_GoTime) / m_MarginTime, m_FirstPos.z);
             });
-        Debug.Log("Timing = " + m_Note.Timing);
     }
 
     public void Fire(float distance, float marginTime)
