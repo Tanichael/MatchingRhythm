@@ -136,8 +136,10 @@ public class GameManager : MonoBehaviour
     {
         m_Notes = new List<Note>();
 
-        string jsonText = Resources.Load<TextAsset>(m_FilePath).ToString();
-        m_AudioSource.clip = (AudioClip)Resources.Load(m_ClipPath);
+        //音楽データをセット
+        //ここの処理は選択画面の方に移すことになりそう
+        string jsonText = DataManager.Instance.MusicData.NotesData.ToString();
+        m_AudioSource.clip = DataManager.Instance.MusicData.AudioClip;
 
         JsonNode json = JsonNode.Parse(jsonText);
 
@@ -159,6 +161,10 @@ public class GameManager : MonoBehaviour
             else if (type == "ugly")
             {
                 note.NoteController.SetUp(m_Ugly, spawnPoint);
+            }
+            else if (type == "none")
+            {
+                continue;
             }
             else
             {

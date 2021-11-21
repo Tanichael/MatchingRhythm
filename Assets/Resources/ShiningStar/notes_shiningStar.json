@@ -1,14 +1,84 @@
 {
 	"notes": [
 		{
-			"timing": "5316.455696202532",
+			"timing": "0",
 			"place": "2",
+			"type": "none"
+		},
+		{
+			"timing": "379.746835443038",
+			"place": "0",
+			"type": "none"
+		},
+		{
+			"timing": "759.493670886076",
+			"place": "1",
+			"type": "none"
+		},
+		{
+			"timing": "1139.240506329114",
+			"place": "1",
+			"type": "none"
+		},
+		{
+			"timing": "1518.987341772152",
+			"place": "1",
+			"type": "none"
+		},
+		{
+			"timing": "1898.73417721519",
+			"place": "0",
+			"type": "none"
+		},
+		{
+			"timing": "2278.481012658228",
+			"place": "2",
+			"type": "none"
+		},
+		{
+			"timing": "2658.227848101266",
+			"place": "0",
+			"type": "none"
+		},
+		{
+			"timing": "3037.974683544304",
+			"place": "1",
+			"type": "beautiful"
+		},
+		{
+			"timing": "3417.721518987342",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "3797.46835443038",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "4177.215189873417",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "4556.962025316456",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "4936.708860759494",
+			"place": "1",
+			"type": "beautiful"
+		},
+		{
+			"timing": "5316.455696202532",
+			"place": "0",
 			"type": "beautiful"
 		},
 		{
 			"timing": "5696.202531645569",
-			"place": "1",
-			"type": "beautiful"
+			"place": "0",
+			"type": "ugly"
 		},
 		{
 			"timing": "6075.949367088608",
@@ -17,833 +87,833 @@
 		},
 		{
 			"timing": "6455.696202531646",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "6835.443037974685",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "7215.189873417723",
 			"place": "0",
 			"type": "beautiful"
 		},
 		{
-			"timing": "7594.936708860761",
+			"timing": "6835.443037974684",
 			"place": "1",
 			"type": "ugly"
 		},
 		{
-			"timing": "7974.6835443038",
+			"timing": "7215.189873417721",
 			"place": "0",
-			"type": "beautiful"
+			"type": "ugly"
 		},
 		{
-			"timing": "8354.430379746838",
+			"timing": "7594.93670886076",
 			"place": "1",
 			"type": "beautiful"
 		},
 		{
-			"timing": "8734.177215189877",
-			"place": "0",
-			"type": "ugly"
-		},
-		{
-			"timing": "9113.924050632915",
+			"timing": "7974.683544303798",
 			"place": "0",
 			"type": "beautiful"
 		},
 		{
-			"timing": "9493.670886075954",
-			"place": "2",
-			"type": "beautiful"
-		},
-		{
-			"timing": "9873.417721518992",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "10253.16455696203",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "10632.911392405069",
-			"place": "0",
-			"type": "ugly"
-		},
-		{
-			"timing": "11012.658227848107",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "11392.405063291146",
+			"timing": "8354.430379746835",
 			"place": "1",
 			"type": "ugly"
 		},
 		{
-			"timing": "11772.151898734184",
+			"timing": "8734.177215189873",
 			"place": "1",
 			"type": "ugly"
 		},
 		{
-			"timing": "12151.898734177223",
+			"timing": "9113.924050632912",
 			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "9493.67088607595",
+			"place": "0",
 			"type": "beautiful"
 		},
 		{
-			"timing": "12531.645569620261",
+			"timing": "9873.417721518988",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "10253.164556962025",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "10632.911392405063",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "11012.658227848102",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "11392.405063291139",
 			"place": "2",
 			"type": "ugly"
 		},
 		{
-			"timing": "12911.3924050633",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "13291.139240506338",
+			"timing": "11772.151898734177",
 			"place": "2",
 			"type": "beautiful"
 		},
 		{
-			"timing": "13670.886075949376",
-			"place": "0",
+			"timing": "12151.898734177215",
+			"place": "1",
 			"type": "beautiful"
 		},
 		{
-			"timing": "14050.632911392415",
-			"place": "0",
+			"timing": "12531.645569620254",
+			"place": "1",
 			"type": "beautiful"
 		},
 		{
-			"timing": "14430.379746835453",
+			"timing": "12911.392405063292",
 			"place": "2",
 			"type": "ugly"
 		},
 		{
-			"timing": "14810.126582278492",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "15189.87341772153",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "15569.620253164569",
+			"timing": "13291.139240506329",
 			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "15949.367088607607",
-			"place": "1",
 			"type": "ugly"
 		},
 		{
-			"timing": "16329.113924050645",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "16708.860759493684",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "17088.607594936722",
-			"place": "1",
+			"timing": "13670.886075949367",
+			"place": "0",
 			"type": "ugly"
 		},
 		{
-			"timing": "17468.35443037976",
+			"timing": "14050.632911392406",
+			"place": "1",
+			"type": "beautiful"
+		},
+		{
+			"timing": "14430.379746835442",
 			"place": "2",
 			"type": "beautiful"
 		},
 		{
-			"timing": "17848.1012658228",
+			"timing": "14810.12658227848",
 			"place": "2",
 			"type": "beautiful"
 		},
 		{
-			"timing": "18227.848101265838",
-			"place": "2",
-			"type": "beautiful"
-		},
-		{
-			"timing": "18607.594936708876",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "18987.341772151914",
-			"place": "2",
-			"type": "beautiful"
-		},
-		{
-			"timing": "19367.088607594953",
-			"place": "2",
-			"type": "beautiful"
-		},
-		{
-			"timing": "19746.83544303799",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "20126.58227848103",
+			"timing": "15189.87341772152",
 			"place": "2",
 			"type": "ugly"
 		},
 		{
-			"timing": "20506.32911392407",
-			"place": "0",
-			"type": "ugly"
-		},
-		{
-			"timing": "20886.075949367107",
+			"timing": "15569.620253164558",
 			"place": "1",
 			"type": "beautiful"
 		},
 		{
-			"timing": "21265.822784810145",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "21645.569620253184",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "22025.316455696222",
+			"timing": "15949.367088607596",
 			"place": "1",
 			"type": "beautiful"
 		},
 		{
-			"timing": "22405.06329113926",
+			"timing": "16329.113924050633",
 			"place": "2",
 			"type": "beautiful"
 		},
 		{
-			"timing": "22784.8101265823",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "23164.556962025337",
+			"timing": "16708.86075949367",
 			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "23544.303797468376",
-			"place": "2",
-			"type": "beautiful"
-		},
-		{
-			"timing": "23924.050632911414",
-			"place": "0",
 			"type": "ugly"
 		},
 		{
-			"timing": "24303.797468354453",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "24683.54430379749",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "25063.29113924053",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "25443.037974683568",
+			"timing": "17088.607594936708",
 			"place": "2",
 			"type": "ugly"
 		},
 		{
-			"timing": "25822.784810126606",
+			"timing": "17468.354430379746",
 			"place": "0",
 			"type": "ugly"
 		},
 		{
-			"timing": "26202.531645569645",
+			"timing": "17848.101265822785",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "18227.848101265823",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "18607.59493670886",
 			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "26582.278481012683",
-			"place": "2",
 			"type": "ugly"
 		},
 		{
-			"timing": "26962.02531645572",
-			"place": "0",
-			"type": "ugly"
-		},
-		{
-			"timing": "27341.77215189876",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "27721.5189873418",
-			"place": "0",
-			"type": "ugly"
-		},
-		{
-			"timing": "28101.265822784837",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "28481.012658227875",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "28860.759493670914",
+			"timing": "18987.3417721519",
 			"place": "2",
 			"type": "beautiful"
 		},
 		{
-			"timing": "29240.506329113952",
+			"timing": "19367.08860759494",
+			"place": "1",
+			"type": "beautiful"
+		},
+		{
+			"timing": "19746.835443037977",
 			"place": "2",
 			"type": "ugly"
 		},
 		{
-			"timing": "29620.25316455699",
-			"place": "0",
-			"type": "beautiful"
+			"timing": "20126.58227848101",
+			"place": "1",
+			"type": "ugly"
 		},
 		{
-			"timing": "30000.00000000003",
+			"timing": "20506.32911392405",
 			"place": "1",
 			"type": "beautiful"
 		},
 		{
-			"timing": "30379.746835443068",
+			"timing": "20886.07594936709",
 			"place": "0",
 			"type": "beautiful"
 		},
 		{
-			"timing": "30759.493670886106",
+			"timing": "21265.822784810127",
+			"place": "0",
+			"type": "beautiful"
+		},
+		{
+			"timing": "21645.569620253165",
+			"place": "0",
+			"type": "beautiful"
+		},
+		{
+			"timing": "22025.316455696204",
 			"place": "2",
 			"type": "beautiful"
 		},
 		{
-			"timing": "31139.240506329144",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "31518.987341772183",
+			"timing": "22405.063291139242",
 			"place": "2",
 			"type": "beautiful"
 		},
 		{
-			"timing": "31898.73417721522",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "32278.48101265826",
+			"timing": "22784.810126582277",
 			"place": "0",
 			"type": "ugly"
 		},
 		{
-			"timing": "32658.227848101298",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "33037.97468354434",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "33417.721518987375",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "33797.46835443041",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "34177.21518987345",
-			"place": "0",
-			"type": "ugly"
-		},
-		{
-			"timing": "34556.96202531649",
+			"timing": "23164.556962025315",
 			"place": "1",
 			"type": "beautiful"
 		},
 		{
-			"timing": "34936.70886075953",
-			"place": "0",
-			"type": "ugly"
-		},
-		{
-			"timing": "35316.45569620257",
+			"timing": "23544.303797468354",
 			"place": "1",
 			"type": "ugly"
 		},
 		{
-			"timing": "35696.202531645606",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "36075.949367088644",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "36455.69620253168",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "36835.44303797472",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "37215.18987341776",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "37594.9367088608",
+			"timing": "23924.050632911392",
 			"place": "2",
 			"type": "beautiful"
 		},
 		{
-			"timing": "37974.683544303836",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "38354.430379746875",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "38734.17721518991",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "39113.92405063295",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "39493.67088607599",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "39873.41772151903",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "40253.16455696207",
+			"timing": "24303.79746835443",
 			"place": "2",
 			"type": "beautiful"
 		},
 		{
-			"timing": "40632.911392405105",
+			"timing": "24683.54430379747",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "25063.291139240508",
 			"place": "2",
 			"type": "ugly"
 		},
 		{
-			"timing": "41012.658227848144",
+			"timing": "25443.037974683546",
 			"place": "1",
 			"type": "beautiful"
 		},
 		{
-			"timing": "41392.40506329118",
-			"place": "0",
-			"type": "ugly"
-		},
-		{
-			"timing": "41772.15189873422",
+			"timing": "25822.784810126584",
 			"place": "1",
 			"type": "ugly"
 		},
 		{
-			"timing": "42151.89873417726",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "42531.6455696203",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "42911.392405063336",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "43291.139240506374",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "43670.88607594941",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "44050.63291139245",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "44430.37974683549",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "44810.12658227853",
+			"timing": "26202.53164556962",
 			"place": "0",
 			"type": "ugly"
 		},
 		{
-			"timing": "45189.87341772157",
-			"place": "0",
-			"type": "ugly"
-		},
-		{
-			"timing": "45569.620253164605",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "45949.36708860764",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "46329.11392405068",
+			"timing": "26582.278481012658",
 			"place": "2",
 			"type": "ugly"
 		},
 		{
-			"timing": "46708.86075949372",
+			"timing": "26962.025316455696",
 			"place": "1",
 			"type": "ugly"
 		},
 		{
-			"timing": "47088.60759493676",
+			"timing": "27341.772151898735",
 			"place": "0",
 			"type": "ugly"
 		},
 		{
-			"timing": "47468.3544303798",
-			"place": "0",
-			"type": "ugly"
-		},
-		{
-			"timing": "47848.101265822836",
-			"place": "0",
-			"type": "ugly"
-		},
-		{
-			"timing": "48227.848101265874",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "48607.59493670891",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "48987.34177215195",
-			"place": "0",
-			"type": "ugly"
-		},
-		{
-			"timing": "49367.08860759499",
-			"place": "0",
-			"type": "ugly"
-		},
-		{
-			"timing": "49746.83544303803",
+			"timing": "27721.518987341773",
 			"place": "0",
 			"type": "beautiful"
 		},
 		{
-			"timing": "50126.582278481066",
-			"place": "0",
-			"type": "ugly"
-		},
-		{
-			"timing": "50506.329113924105",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "50886.07594936714",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "51265.82278481018",
-			"place": "0",
-			"type": "ugly"
-		},
-		{
-			"timing": "51645.56962025322",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "52025.31645569626",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "52405.0632911393",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "52784.810126582335",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "53164.556962025374",
-			"place": "0",
-			"type": "ugly"
-		},
-		{
-			"timing": "53544.30379746841",
-			"place": "0",
-			"type": "ugly"
-		},
-		{
-			"timing": "53924.05063291145",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "54303.79746835449",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "54683.54430379753",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "55063.291139240566",
+			"timing": "28101.26582278481",
 			"place": "2",
 			"type": "beautiful"
 		},
 		{
-			"timing": "55443.037974683604",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "55822.78481012664",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "56202.53164556968",
+			"timing": "28481.01265822785",
 			"place": "0",
 			"type": "beautiful"
 		},
 		{
-			"timing": "56582.27848101272",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "56962.02531645576",
-			"place": "2",
-			"type": "beautiful"
-		},
-		{
-			"timing": "57341.7721518988",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "57721.518987341835",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "58101.26582278487",
+			"timing": "28860.759493670885",
 			"place": "0",
 			"type": "beautiful"
 		},
 		{
-			"timing": "58481.01265822791",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "58860.75949367095",
-			"place": "2",
-			"type": "beautiful"
-		},
-		{
-			"timing": "59240.50632911399",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "59620.25316455703",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "60000.000000000065",
+			"timing": "29240.506329113923",
 			"place": "0",
 			"type": "ugly"
 		},
 		{
-			"timing": "60379.746835443104",
-			"place": "2",
-			"type": "beautiful"
-		},
-		{
-			"timing": "60759.49367088614",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "61139.24050632918",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "61518.98734177222",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "61898.73417721526",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "62278.481012658296",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "62658.227848101335",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "63037.97468354437",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "63417.72151898741",
-			"place": "2",
-			"type": "beautiful"
-		},
-		{
-			"timing": "63797.46835443045",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "64177.21518987349",
-			"place": "2",
-			"type": "beautiful"
-		},
-		{
-			"timing": "64556.96202531653",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "64936.708860759565",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "65316.4556962026",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "65696.20253164564",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "66075.94936708867",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "66455.6962025317",
+			"timing": "29620.25316455696",
 			"place": "0",
 			"type": "ugly"
 		},
 		{
-			"timing": "66835.44303797474",
+			"timing": "30000",
 			"place": "1",
 			"type": "beautiful"
 		},
 		{
-			"timing": "67215.18987341777",
+			"timing": "30379.74683544304",
+			"place": "0",
+			"type": "beautiful"
+		},
+		{
+			"timing": "30759.493670886077",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "31139.240506329115",
+			"place": "0",
+			"type": "beautiful"
+		},
+		{
+			"timing": "31518.987341772154",
+			"place": "2",
+			"type": "ugly"
+		},
+		{
+			"timing": "31898.734177215192",
+			"place": "2",
+			"type": "ugly"
+		},
+		{
+			"timing": "32278.481012658227",
+			"place": "1",
+			"type": "beautiful"
+		},
+		{
+			"timing": "32658.227848101265",
+			"place": "1",
+			"type": "beautiful"
+		},
+		{
+			"timing": "33037.97468354431",
+			"place": "2",
+			"type": "ugly"
+		},
+		{
+			"timing": "33417.72151898734",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "33797.46835443038",
+			"place": "2",
+			"type": "ugly"
+		},
+		{
+			"timing": "34177.215189873416",
 			"place": "2",
 			"type": "beautiful"
 		},
 		{
-			"timing": "67594.9367088608",
-			"place": "2",
-			"type": "beautiful"
+			"timing": "34556.962025316454",
+			"place": "1",
+			"type": "ugly"
 		},
 		{
-			"timing": "67974.68354430383",
+			"timing": "34936.70886075949",
 			"place": "0",
 			"type": "ugly"
 		},
 		{
-			"timing": "68354.43037974686",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "68734.17721518989",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "69113.92405063292",
+			"timing": "35316.45569620253",
 			"place": "2",
 			"type": "ugly"
+		},
+		{
+			"timing": "35696.20253164557",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "36075.94936708861",
+			"place": "0",
+			"type": "beautiful"
+		},
+		{
+			"timing": "36455.696202531646",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "36835.443037974685",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "37215.18987341772",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "37594.93670886076",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "37974.6835443038",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "38354.43037974684",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "38734.17721518988",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "39113.924050632915",
+			"place": "2",
+			"type": "ugly"
+		},
+		{
+			"timing": "39493.67088607595",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "39873.417721518985",
+			"place": "2",
+			"type": "ugly"
+		},
+		{
+			"timing": "40253.16455696202",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "40632.91139240506",
+			"place": "2",
+			"type": "ugly"
+		},
+		{
+			"timing": "41012.6582278481",
+			"place": "0",
+			"type": "beautiful"
+		},
+		{
+			"timing": "41392.40506329114",
+			"place": "0",
+			"type": "beautiful"
+		},
+		{
+			"timing": "41772.15189873418",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "42151.898734177215",
+			"place": "2",
+			"type": "ugly"
+		},
+		{
+			"timing": "42531.645569620254",
+			"place": "1",
+			"type": "beautiful"
+		},
+		{
+			"timing": "42911.39240506329",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "43291.13924050633",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "43670.88607594937",
+			"place": "0",
+			"type": "beautiful"
+		},
+		{
+			"timing": "44050.63291139241",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "44430.379746835446",
+			"place": "1",
+			"type": "beautiful"
+		},
+		{
+			"timing": "44810.126582278484",
+			"place": "1",
+			"type": "beautiful"
+		},
+		{
+			"timing": "45189.87341772152",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "45569.620253164554",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "45949.36708860759",
+			"place": "1",
+			"type": "beautiful"
+		},
+		{
+			"timing": "46329.11392405063",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "46708.86075949367",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "47088.60759493671",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "47468.354430379746",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "47848.101265822785",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "48227.84810126582",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "48607.59493670886",
+			"place": "2",
+			"type": "ugly"
+		},
+		{
+			"timing": "48987.3417721519",
+			"place": "1",
+			"type": "beautiful"
+		},
+		{
+			"timing": "49367.08860759494",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "49746.83544303798",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "50126.582278481015",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "50506.329113924054",
+			"place": "1",
+			"type": "beautiful"
+		},
+		{
+			"timing": "50886.07594936709",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "51265.82278481013",
+			"place": "2",
+			"type": "ugly"
+		},
+		{
+			"timing": "51645.56962025317",
+			"place": "0",
+			"type": "beautiful"
+		},
+		{
+			"timing": "52025.3164556962",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "52405.06329113924",
+			"place": "2",
+			"type": "ugly"
+		},
+		{
+			"timing": "52784.81012658228",
+			"place": "1",
+			"type": "beautiful"
+		},
+		{
+			"timing": "53164.556962025315",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "53544.303797468354",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "53924.05063291139",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "54303.79746835443",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "54683.54430379747",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "55063.29113924051",
+			"place": "1",
+			"type": "beautiful"
+		},
+		{
+			"timing": "55443.037974683546",
+			"place": "0",
+			"type": "beautiful"
+		},
+		{
+			"timing": "55822.784810126584",
+			"place": "0",
+			"type": "beautiful"
+		},
+		{
+			"timing": "56202.53164556962",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "56582.27848101266",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "56962.0253164557",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "57341.77215189874",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "57721.51898734177",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "58101.26582278481",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "58481.012658227846",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "58860.759493670885",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "59240.50632911392",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "59620.25316455696",
+			"place": "0",
+			"type": "beautiful"
+		},
+		{
+			"timing": "60000",
+			"place": "0",
+			"type": "beautiful"
+		},
+		{
+			"timing": "60379.74683544304",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "60759.49367088608",
+			"place": "1",
+			"type": "beautiful"
+		},
+		{
+			"timing": "61139.240506329115",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "61518.987341772154",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "61898.73417721519",
+			"place": "1",
+			"type": "beautiful"
+		},
+		{
+			"timing": "62278.48101265823",
+			"place": "0",
+			"type": "beautiful"
+		},
+		{
+			"timing": "62658.22784810127",
+			"place": "0",
+			"type": "beautiful"
+		},
+		{
+			"timing": "63037.97468354431",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "63417.721518987346",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "63797.468354430384",
+			"place": "1",
+			"type": "beautiful"
+		},
+		{
+			"timing": "64177.215189873416",
+			"place": "2",
+			"type": "ugly"
+		},
+		{
+			"timing": "64556.962025316454",
+			"place": "2",
+			"type": "ugly"
+		},
+		{
+			"timing": "64936.70886075949",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "65316.45569620253",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "65696.20253164557",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "66075.94936708861",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "66455.69620253165",
+			"place": "2",
+			"type": "ugly"
+		},
+		{
+			"timing": "66835.44303797468",
+			"place": "2",
+			"type": "ugly"
+		},
+		{
+			"timing": "67215.18987341772",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "67594.93670886075",
+			"place": "0",
+			"type": "beautiful"
+		},
+		{
+			"timing": "67974.6835443038",
+			"place": "0",
+			"type": "beautiful"
+		},
+		{
+			"timing": "68354.43037974683",
+			"place": "2",
+			"type": "ugly"
+		},
+		{
+			"timing": "68734.17721518988",
+			"place": "1",
+			"type": "beautiful"
+		},
+		{
+			"timing": "69113.92405063291",
+			"place": "0",
+			"type": "beautiful"
 		},
 		{
 			"timing": "69493.67088607595",
@@ -853,150 +923,80 @@
 		{
 			"timing": "69873.41772151898",
 			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "70253.16455696202",
-			"place": "2",
 			"type": "beautiful"
 		},
 		{
-			"timing": "70632.91139240505",
-			"place": "2",
-			"type": "beautiful"
-		},
-		{
-			"timing": "71012.65822784808",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "71392.40506329111",
-			"place": "0",
-			"type": "ugly"
-		},
-		{
-			"timing": "71772.15189873414",
-			"place": "1",
-			"type": "ugly"
-		},
-		{
-			"timing": "72151.89873417717",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "72531.6455696202",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "72911.39240506323",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "73291.13924050627",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "73670.8860759493",
-			"place": "2",
-			"type": "beautiful"
-		},
-		{
-			"timing": "74050.63291139233",
+			"timing": "70253.16455696203",
 			"place": "2",
 			"type": "ugly"
 		},
 		{
-			"timing": "74430.37974683536",
-			"place": "2",
-			"type": "beautiful"
-		},
-		{
-			"timing": "74810.12658227839",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "75189.87341772142",
-			"place": "2",
-			"type": "beautiful"
-		},
-		{
-			"timing": "75569.62025316445",
-			"place": "2",
-			"type": "beautiful"
-		},
-		{
-			"timing": "75949.36708860748",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "76329.11392405051",
+			"timing": "70632.91139240506",
 			"place": "1",
 			"type": "beautiful"
 		},
 		{
-			"timing": "76708.86075949355",
+			"timing": "71012.65822784811",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "71392.40506329114",
+			"place": "1",
+			"type": "ugly"
+		},
+		{
+			"timing": "71772.15189873418",
+			"place": "0",
+			"type": "beautiful"
+		},
+		{
+			"timing": "72151.89873417722",
 			"place": "1",
 			"type": "beautiful"
 		},
 		{
-			"timing": "77088.60759493658",
-			"place": "1",
+			"timing": "72531.64556962026",
+			"place": "2",
 			"type": "beautiful"
 		},
 		{
-			"timing": "77468.35443037961",
+			"timing": "72911.39240506329",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "73291.13924050632",
+			"place": "2",
+			"type": "beautiful"
+		},
+		{
+			"timing": "73670.88607594937",
+			"place": "0",
+			"type": "beautiful"
+		},
+		{
+			"timing": "74050.6329113924",
+			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "74430.37974683545",
 			"place": "2",
 			"type": "ugly"
 		},
 		{
-			"timing": "77848.10126582264",
+			"timing": "74810.12658227848",
 			"place": "2",
 			"type": "beautiful"
 		},
 		{
-			"timing": "78227.84810126567",
+			"timing": "75189.87341772152",
 			"place": "2",
 			"type": "beautiful"
 		},
 		{
-			"timing": "78607.5949367087",
-			"place": "2",
-			"type": "beautiful"
-		},
-		{
-			"timing": "78987.34177215173",
-			"place": "2",
-			"type": "beautiful"
-		},
-		{
-			"timing": "79367.08860759476",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "79746.8354430378",
-			"place": "0",
-			"type": "beautiful"
-		},
-		{
-			"timing": "80126.58227848083",
-			"place": "1",
-			"type": "beautiful"
-		},
-		{
-			"timing": "80506.32911392386",
-			"place": "2",
-			"type": "beautiful"
-		},
-		{
-			"timing": "80886.07594936689",
+			"timing": "75569.62025316455",
 			"place": "1",
 			"type": "ugly"
 		}
