@@ -39,6 +39,17 @@ public class GameManager : MonoBehaviour
     private float m_EndTiming;
     private bool m_DoStartFlick;
 
+    private Subject<string> m_LoadMusicDataSubject = new Subject<string>(); //subject
+
+    public IObservable<string> OnLoadMusicData //observer
+    {
+        get
+        {
+            return m_LoadMusicDataSubject;
+        }
+    }
+
+
     private Subject<string> SoundEffectSubject = new Subject<string>();
 
     public IObservable<string> OnSoundEffect
@@ -66,13 +77,19 @@ public class GameManager : MonoBehaviour
         m_NoteIndex = 0;
         m_DoStartFlick = false;
 
-        m_Play.onClick
-            .AsObservable()
-            .Subscribe(_ => Play());
+        //ノーツ読み込み後の処理
+        this
+            .OnLoadMusicData
+            .Where(load => load == "load")
+            .Subscribe(load => Play());
 
-        m_SetChart.onClick
-            .AsObservable()
-            .Subscribe(_ => LoadChart());
+        //m_Play.onClick
+        //    .AsObservable()
+        //    .Subscribe(_ => Play());
+
+        //m_SetChart.onClick
+        //    .AsObservable()
+        //    .Subscribe(_ => LoadChart());
 
         this.UpdateAsObservable()
             .Where(_ => m_IsPlaying)
@@ -130,6 +147,8 @@ public class GameManager : MonoBehaviour
                 m_DoStartFlick = false; //フリック完了をフラグで管理
             });
 
+        LoadChart(); //ノーツ読み込み
+
     }
 
     private void LoadChart()
@@ -172,8 +191,10 @@ public class GameManager : MonoBehaviour
             }
 
             m_Notes.Add(note);
-
         }
+
+        m_LoadMusicDataSubject.OnNext("load");
+        Debug.Log("load");
 
     }
 

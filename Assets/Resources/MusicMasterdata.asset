@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MusicDataList:
   - m_Id: 0
-    m_Title: ShiningStar
+    m_Title: Shining Star
     m_AudioClip: {fileID: 8300000, guid: b8a3d933cadb242e1a90106f93c2cc8a, type: 3}
     m_NotesData: {fileID: 4900000, guid: 40656e3d59f274ab1b7e1fc76d584840, type: 3}
   - m_Id: 1
-    m_Title: ShiningStar
+    m_Title: Shining Star1
     m_AudioClip: {fileID: 8300000, guid: b8a3d933cadb242e1a90106f93c2cc8a, type: 3}
     m_NotesData: {fileID: 4900000, guid: 40656e3d59f274ab1b7e1fc76d584840, type: 3}
   - m_Id: 2
-    m_Title: ShiningStar
+    m_Title: Shining Star2
     m_AudioClip: {fileID: 8300000, guid: b8a3d933cadb242e1a90106f93c2cc8a, type: 3}
     m_NotesData: {fileID: 4900000, guid: 40656e3d59f274ab1b7e1fc76d584840, type: 3}
   - m_Id: 3
-    m_Title: ShiningStar
+    m_Title: Shining Star3
     m_AudioClip: {fileID: 8300000, guid: b8a3d933cadb242e1a90106f93c2cc8a, type: 3}
     m_NotesData: {fileID: 4900000, guid: 40656e3d59f274ab1b7e1fc76d584840, type: 3}
