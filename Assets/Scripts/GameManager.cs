@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     private readonly float ms_Range = 1.4f;
     private readonly float ms_JudgeRange = 0.8f;
-    private readonly float ms_MarginTime = 2 * 1000f;
+    private readonly float ms_MarginTime = 1200f;
     private readonly float ms_CheckRange = 120f;
     private readonly float ms_BeatRange = 80f;
     private readonly float ms_FlickRange = 0.2f;
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    //SoundEffectを管理するsubject
     private Subject<string> SoundEffectSubject = new Subject<string>();
 
     public IObservable<string> OnSoundEffect
@@ -60,13 +60,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private Subject<string> MessageEffectSubject = new Subject<string>();
+    //メッセージエフェクトを管理するsubject
+    //private Subject<string> MessageEffectSubject = new Subject<string>();
 
-    public IObservable<string> OnMessageEffect
+    //public IObservable<string> OnMessageEffect
+    //{
+    //    get
+    //    {
+    //        return MessageEffectSubject;
+    //    }
+    //}
+
+    //ノーツのヒットを管理するサブジェクト
+    private Subject<string> m_HitNotesSubject = new Subject<string>();
+
+    public IObservable<string> OnHitNotes
     {
         get
         {
-            return MessageEffectSubject;
+            return m_HitNotesSubject;
         }
     }
 
@@ -77,7 +89,7 @@ public class GameManager : MonoBehaviour
         m_NoteIndex = 0;
         m_DoStartFlick = false;
 
-        //ノーツ読み込み後の処理
+        //ノーツ読み込み後の処理 loaderクラスを用意してもいい？
         this
             .OnLoadMusicData
             .Where(load => load == "load")
@@ -193,7 +205,7 @@ public class GameManager : MonoBehaviour
             m_Notes.Add(note);
         }
 
-        m_LoadMusicDataSubject.OnNext("load");
+        m_LoadMusicDataSubject.OnNext("load"); //ロード完了を伝える
         Debug.Log("load");
 
     }
@@ -235,8 +247,7 @@ public class GameManager : MonoBehaviour
                 m_Notes[minDiffIndex].NoteObject.SetActive(false); //Noteクラスのstateを変えるとかでは？
                 m_Notes[minDiffIndex].NoteState = Note.State.Off;
 
-                MessageEffectSubject.OnNext("good");
-                Debug.Log("beat " + type + " success.");
+                m_HitNotesSubject.OnNext("good");
             }
             else
             {
@@ -244,8 +255,7 @@ public class GameManager : MonoBehaviour
                 m_Notes[minDiffIndex].NoteObject.SetActive(false);
                 m_Notes[minDiffIndex].NoteState = Note.State.Off;
 
-                MessageEffectSubject.OnNext("failure");
-                Debug.Log("beat " + type + " failure.");
+                m_HitNotesSubject.OnNext("failure");
             }
         }
         else //スルーしてる時
