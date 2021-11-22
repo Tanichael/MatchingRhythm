@@ -14,7 +14,7 @@ public class HitResult
 {
     [SerializeField] private int m_Id;
     [SerializeField] private string m_Result;
-    [SerializeField] private float m_BaseScore;
+    [SerializeField] private float m_ScoreRate;
     [SerializeField] private GameObject m_ResultObject;
 
     public int Id
@@ -33,11 +33,11 @@ public class HitResult
         }
     }
 
-    public float BaseScore
+    public float ScoreRate
     {
         get
         {
-            return m_BaseScore;
+            return m_ScoreRate;
         }
     }
 

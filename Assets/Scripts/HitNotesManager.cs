@@ -4,9 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
+/// <summary>
+/// ノーツを叩いた時の処理をまとめたクラス
+/// スコア関連のデータ更新についてはScoreControllerクラスに処理を委譲する
+/// </summary>
 public class HitNotesManager : MonoBehaviour
 {
     [SerializeField] GameManager m_GameManager;
+    [SerializeField] ScoreController m_ScoreController;
 
     private HitResult[] m_HitResults;
 
@@ -35,6 +40,8 @@ public class HitNotesManager : MonoBehaviour
 
                 Observable.Timer(TimeSpan.FromMilliseconds(200))
                     .Subscribe(_ => resultObject.SetActive(false));
+
+                m_ScoreController.CalculateScore(hitResult);
             }
         }
     }

@@ -3,8 +3,8 @@
 public class DataManager : Singleton<DataManager>
 {
     private MusicData m_MusicData;
-    private float m_Score;
-    private int m_Combo;
+    private float m_Score = 0f;
+    private int m_Combo = 0;
     private Dictionary<string, int> m_CountDictionary;
 
     public MusicData MusicData

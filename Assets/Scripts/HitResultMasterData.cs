@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "HitResultMasterData", menuName = "ScriptableObjects/CreateHitResultMasterData")]
 public class HitResultMasterData : ScriptableObject
 {
+    [SerializeField] private float m_BaseScore;
     [SerializeField] private HitResult[] m_HitResults;
 
     //staticにするとメモリ確保することになっちゃうな？いちいちロードした方が健全か？
@@ -19,6 +20,14 @@ public class HitResultMasterData : ScriptableObject
                 m_Instance = Resources.Load<HitResultMasterData>("HitResultMasterData");
             }
             return m_Instance;
+        }
+    }
+
+    public float BaseScore
+    {
+        get
+        {
+            return m_BaseScore;
         }
     }
 
