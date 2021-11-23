@@ -5,15 +5,22 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// リザルトに対応するものをまとめておいたクラス マスターデータとしてリストで保管する
+/// ノーツヒット時のリザルトに対応するものをまとめておいたクラス マスターデータとしてリストで保管する
+/// 判定ごとに表示するオブジェクトやスコア倍率などが記録されている
 /// エフェクトなどもここに入れちゃっていいかも
 /// </summary>
 
 [Serializable]
 public class HitResult
 {
+    public enum ResultState
+    {
+        Good = 0, //配列で管理できるようにindexをつけておく
+        Failure = 1,
+    }
+
     [SerializeField] private int m_Id;
-    [SerializeField] private string m_Result;
+    [SerializeField] private ResultState m_State;
     [SerializeField] private float m_ScoreRate;
     [SerializeField] private GameObject m_ResultObject;
 
@@ -25,11 +32,11 @@ public class HitResult
         }
     }
 
-    public string Result
+    public ResultState State
     {
         get
         {
-            return m_Result;
+            return m_State;
         }
     }
 

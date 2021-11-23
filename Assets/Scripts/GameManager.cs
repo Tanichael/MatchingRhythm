@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UniRx;
 using UniRx.Triggers;
 
@@ -33,11 +34,15 @@ public class GameManager : MonoBehaviour
     private float m_Distance;
     private int m_NoteIndex;
 
+    //フリック関連メンバー変数
     private Vector3 m_StartMousePos;
     private Vector3 m_EndPos;
     private float m_StartTiming;
     private float m_EndTiming;
     private bool m_DoStartFlick;
+
+    //音楽関連メンバー変数
+    private bool m_IsPause = false; //ポーズされてるか
 
     private Subject<string> m_LoadMusicDataSubject = new Subject<string>(); //subject
 
@@ -60,21 +65,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //メッセージエフェクトを管理するsubject
-    //private Subject<string> MessageEffectSubject = new Subject<string>();
-
-    //public IObservable<string> OnMessageEffect
-    //{
-    //    get
-    //    {
-    //        return MessageEffectSubject;
-    //    }
-    //}
-
     //ノーツのヒットを管理するサブジェクト
-    private Subject<string> m_HitNotesSubject = new Subject<string>();
+    private Subject<HitResult.ResultState> m_HitNotesSubject = new Subject<HitResult.ResultState>();
 
-    public IObservable<string> OnHitNotes
+    public IObservable<HitResult.ResultState> OnHitNotes
     {
         get
         {
@@ -159,6 +153,18 @@ public class GameManager : MonoBehaviour
                 m_DoStartFlick = false; //フリック完了をフラグで管理
             });
 
+        //再生が終わった時の処理
+        this.UpdateAsObservable()
+            .Where(_ => m_IsPlaying == true) //ゲームがスタートした後かどうか
+            .Where(_ => m_IsPause == false)
+            .Where(_ => m_AudioSource.isPlaying == false)
+            .Subscribe(_ =>
+            {
+                //とりあえず遅らせてからシーン遷移
+                Observable.Timer(TimeSpan.FromMilliseconds(2000))
+                    .Subscribe(__ => SceneManager.LoadScene("ResultScene"));
+            });
+
         LoadChart(); //ノーツ読み込み
 
     }
@@ -219,7 +225,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Start!!");
     }
 
-    //本当はこの中の詳細な処理は別のところに委譲したい Noteクラスとか
+    //本当はこの中の詳細な処理は別のところに委譲したい
     private void beat(float timing, int place, string type)
     {
         float minDiff = -1f;
@@ -247,7 +253,7 @@ public class GameManager : MonoBehaviour
                 m_Notes[minDiffIndex].NoteObject.SetActive(false); //Noteクラスのstateを変えるとかでは？
                 m_Notes[minDiffIndex].NoteState = Note.State.Off;
 
-                m_HitNotesSubject.OnNext("good");
+                m_HitNotesSubject.OnNext(HitResult.ResultState.Good); //ここのメッセージとマスターデータのResultを揃えなきゃいけない
             }
             else
             {
@@ -255,7 +261,7 @@ public class GameManager : MonoBehaviour
                 m_Notes[minDiffIndex].NoteObject.SetActive(false);
                 m_Notes[minDiffIndex].NoteState = Note.State.Off;
 
-                m_HitNotesSubject.OnNext("failure");
+                m_HitNotesSubject.OnNext(HitResult.ResultState.Failure);
             }
         }
         else //スルーしてる時

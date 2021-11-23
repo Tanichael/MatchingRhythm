@@ -21,18 +21,20 @@ public class HitNotesManager : MonoBehaviour
 
         m_GameManager
             .OnHitNotes
-            .Subscribe(result => OnHitNotes(result));
+            .Subscribe(resultState =>
+            {
+                OnHitNotes(resultState);
+            });
 
     }
 
     //判定に応じて処理をする関数
-    //引数をstringにしているが、判定をEnumにしてそれを引数にした方が硬い動きしそう
-    private void OnHitNotes(string result)
+    private void OnHitNotes(HitResult.ResultState resultState)
     {
-        //resultをもとに判定がどれか探す
+        //resultStateをもとに判定がどれか探す
         foreach(var hitResult in m_HitResults)
         {
-            if(hitResult.Result == result)
+            if(hitResult.State == resultState)
             {
                 GameObject resultObject = Instantiate(hitResult.ResultObject);
                 resultObject.SetActive(false);

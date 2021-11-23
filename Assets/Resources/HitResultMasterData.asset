@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4785c95bd94a4ab8adbee8ee3f9a5df, type: 3}
   m_Name: HitResultMasterData
   m_EditorClassIdentifier: 
+  m_BaseScore: 10
   m_HitResults:
   - m_Id: 0
-    m_Result: good
-    m_BaseScore: 10
+    m_State: 0
+    m_ScoreRate: 1
     m_ResultObject: {fileID: 398589717757603299, guid: 58acda998e8c24b8e8aa816e1bccf759,
       type: 3}
   - m_Id: 1
-    m_Result: failure
-    m_BaseScore: 0
+    m_State: 1
+    m_ScoreRate: 0
     m_ResultObject: {fileID: 1444080705074021699, guid: d131672e80b694889bd79f4e8f6cef7c,
       type: 3}

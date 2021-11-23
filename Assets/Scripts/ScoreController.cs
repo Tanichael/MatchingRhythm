@@ -19,13 +19,14 @@ public class ScoreController : MonoBehaviour
         float score = DataManager.Instance.Score;
         int combo = DataManager.Instance.Combo;
         int resultCount;
+        int maxCombo = DataManager.Instance.MaxCombo;
 
-        if (DataManager.Instance.CountDictionary.ContainsKey(hitResult.Result) == false)
+        if (DataManager.Instance.CountDictionary.ContainsKey(hitResult.State) == false)
         {
-            DataManager.Instance.CountDictionary.Add(hitResult.Result, 0);
+            DataManager.Instance.CountDictionary.Add(hitResult.State, 0);
             resultCount = 0;
         } else {
-            resultCount = DataManager.Instance.CountDictionary[hitResult.Result];
+            resultCount = DataManager.Instance.CountDictionary[hitResult.State];
         }
 
         //ベーススコアをマスターデータからロード
@@ -40,21 +41,26 @@ public class ScoreController : MonoBehaviour
         DataManager.Instance.Score = score;
 
         //コンボ数の処理 暫定はgoodの時のみカウント
-        if(hitResult.Result == "good")
+        if(hitResult.State == HitResult.ResultState.Good)
         {
             combo += 1;
             DataManager.Instance.Combo = combo;
         }
 
-        if(hitResult.Result == "failure")
+        //failureの時、というかコンボが終わった時
+        if(hitResult.State == HitResult.ResultState.Failure)
         {
+            if(maxCombo < combo)
+            {
+                DataManager.Instance.MaxCombo = combo;
+            }
             combo = 0;
             DataManager.Instance.Combo = combo;
         }
 
         //判定の数を更新
         resultCount = resultCount + 1;
-        DataManager.Instance.CountDictionary[hitResult.Result] = resultCount;
+        DataManager.Instance.CountDictionary[hitResult.State] = resultCount;
 
         Debug.Log("Score = " + score);
         Debug.Log("Combo = " + combo);

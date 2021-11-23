@@ -5,7 +5,8 @@ public class DataManager : Singleton<DataManager>
     private MusicData m_MusicData;
     private float m_Score = 0f;
     private int m_Combo = 0;
-    private Dictionary<string, int> m_CountDictionary;
+    private Dictionary<HitResult.ResultState, int> m_CountDictionary;
+    private int m_MaxCombo = 0;
 
     public MusicData MusicData
     {
@@ -47,13 +48,13 @@ public class DataManager : Singleton<DataManager>
         }
     }
 
-    public Dictionary<string, int> CountDictionary
+    public Dictionary<HitResult.ResultState, int> CountDictionary
     {
         get
         {
             if(m_CountDictionary == null)
             {
-                m_CountDictionary = new Dictionary<string, int>();
+                m_CountDictionary = new Dictionary<HitResult.ResultState, int>();
             }
             return m_CountDictionary;
         }
@@ -61,6 +62,18 @@ public class DataManager : Singleton<DataManager>
         {
             m_CountDictionary = value;
 
+        }
+    }
+
+    public int MaxCombo
+    {
+        get
+        {
+            return m_MaxCombo;
+        }
+        set
+        {
+            m_MaxCombo = value;
         }
     }
 
