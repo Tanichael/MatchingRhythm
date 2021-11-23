@@ -7,6 +7,7 @@ public class MusicSelectSceneController : MonoBehaviour
 {
     [SerializeField] private ScrollRect m_MusicSelectScrollRect;
     [SerializeField] private MusicElement m_MusicElement;
+    [SerializeField] private Button m_Cover;
 
     private List<MusicElement> m_MusicElements = new List<MusicElement>();
 
@@ -15,8 +16,18 @@ public class MusicSelectSceneController : MonoBehaviour
 
     private MusicData[] m_MusicDataList;
 
+    public Button Cover
+    {
+        get
+        {
+            return m_Cover;
+        }
+    }
+
     private void OnEnable()
     {
+        m_Cover.gameObject.SetActive(false);
+        m_Cover.interactable = false;
         //m_MusicDataList = Resources.Load<MusicMasterData>("MusicMasterData").MusicDataList;
         m_MusicDataList = MusicMasterData.Instance.MusicDataList;
         MakeMusicElements(m_MusicDataList);

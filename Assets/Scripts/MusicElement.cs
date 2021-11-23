@@ -9,6 +9,7 @@ public class MusicElement : MonoBehaviour
 {
     [SerializeField] private Button m_MusicButton;
     [SerializeField] private Text m_TitleText;
+    [SerializeField] private MusicSelectSceneController m_MusicSelectSceneController;
 
     private MusicData m_MusicData;
 
@@ -36,6 +37,14 @@ public class MusicElement : MonoBehaviour
         }
     }
 
+    public MusicSelectSceneController MusicSelectSceneController
+    {
+        get
+        {
+            return m_MusicSelectSceneController;
+        }
+    }
+
     private void OnEnable()
     {
         m_MusicButton.onClick
@@ -48,6 +57,7 @@ public class MusicElement : MonoBehaviour
                 //シーン切り替えた後ロードして準備ができたら音楽を流す、って感じで良さそう
                 //つまりここではとりあえずシーンを切り替える
                 SceneManager.LoadScene("GameScene");
+                m_MusicSelectSceneController.Cover.gameObject.SetActive(true);
             });
     }
 

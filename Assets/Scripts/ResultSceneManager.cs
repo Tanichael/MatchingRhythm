@@ -17,10 +17,12 @@ public class ResultSceneManager : MonoBehaviour
 
     private void OnEnable()
     {
+        m_MusicSelectButton.interactable = true;
         m_MusicSelectButton.OnClickAsObservable()
             .Subscribe(_ =>
             {
                 SceneManager.LoadScene("MusicSelectScene");
+                m_MusicSelectButton.interactable = false;
             });
            
 
