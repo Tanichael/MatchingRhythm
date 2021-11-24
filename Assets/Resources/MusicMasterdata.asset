@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b958f224b304e4c58b48efcc7f144505, type: 3}
+  m_Name: MusicMasterdata
+  m_EditorClassIdentifier: 
+  m_MusicDataList:
+  - m_Id: 0
+    m_Title: Shining Star
+    m_AudioClip: {fileID: 8300000, guid: b8a3d933cadb242e1a90106f93c2cc8a, type: 3}
+    m_NotesData: {fileID: 4900000, guid: 91dbcc43a946c4b908e14fe495dcd4b6, type: 3}
+  - m_Id: 1
+    m_Title: "\u7149\u7344\u30BB\u30EC\u30CA\u30FC\u30C7"
+    m_AudioClip: {fileID: 8300000, guid: db30dc0535535478baf7d3a1b895119f, type: 3}
+    m_NotesData: {fileID: 4900000, guid: 45b2af1b6f5504b05924c8f0ce4d51c2, type: 3}
+  - m_Id: 2
+    m_Title: Shining Star2
+    m_AudioClip: {fileID: 8300000, guid: b8a3d933cadb242e1a90106f93c2cc8a, type: 3}
+    m_NotesData: {fileID: 4900000, guid: 91dbcc43a946c4b908e14fe495dcd4b6, type: 3}
+  - m_Id: 3
+    m_Title: Shining Star3
+    m_AudioClip: {fileID: 8300000, guid: b8a3d933cadb242e1a90106f93c2cc8a, type: 3}
+    m_NotesData: {fileID: 4900000, guid: 91dbcc43a946c4b908e14fe495dcd4b6, type: 3}

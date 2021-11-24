@@ -1,0 +1,115 @@
+{
+    "notes":
+    [
+        {
+            "timing": "5316.455696202532",
+            "place": "2",
+            "type": "beautiful"
+        },
+        {
+            "timing": "5696.202531645569",
+            "place": "2",
+            "type": "ugly"
+        },
+        {
+            "timing": "6075.949367088608",
+            "place": "2",
+            "type": "beautiful"
+        },
+        {
+            "timing": "6455.696202531645",
+            "place": "1",
+            "type": "beautiful"
+        },
+        {
+            "timing": "6835.443037974684",
+            "place": "0",
+            "type": "ugly"
+        },
+        {
+            "timing": "7215.189873417721",
+            "place": "2",
+            "type": "beautiful"
+        },
+        {
+            "timing": "7594.93670886076",
+            "place": "0",
+            "type": "beautiful"
+        },
+        {
+            "timing": "7974.683544",
+            "place": "0",
+            "type": "beautiful"
+        },
+        {
+            "timing": "8354.43038",
+            "place": "2",
+            "type": "ugly"
+        },
+        {
+            "timing": "8734.177215",
+            "place": "2",
+            "type": "beautiful"
+        },
+        {
+            "timing": "9113.924051",
+            "place": "1",
+            "type": "beautiful"
+        },
+        {
+            "timing": "9493.670886",
+            "place": "0",
+            "type": "ugly"
+        },
+        {
+            "timing": "9873.417722",
+            "place": "2",
+            "type": "beautiful"
+        },
+        {
+            "timing": "10253.16456",
+            "place": "2",
+            "type": "beautiful"
+        },
+        {
+            "timing": "10632.91139",
+            "place": "0",
+            "type": "beautiful"
+        },
+        {
+            "timing": "11012.65823",
+            "place": "2",
+            "type": "beautiful"
+        },
+        {
+            "timing": "11392.40506",
+            "place": "0",
+            "type": "ugly"
+        },
+        {
+            "timing": "11772.1519",
+            "place": "2",
+            "type": "beautiful"
+        },
+        {
+            "timing": "12151.89873",
+            "place": "2",
+            "type": "beautiful"
+        },
+        {
+            "timing": "12531.64557",
+            "place": "1",
+            "type": "ugly"
+        },
+        {
+            "timing": "12911.39241",
+            "place": "2",
+            "type": "beautiful"
+        },
+        {
+            "timing": "13291.13924",
+            "place": "0",
+            "type": "beautiful"
+        }
+    ]
+}
