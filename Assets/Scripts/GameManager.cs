@@ -192,7 +192,7 @@ public class GameManager : MonoBehaviour
             .Subscribe(_ =>
             {
                 //とりあえず遅らせてからシーン遷移
-                Observable.Timer(TimeSpan.FromMilliseconds(2000))
+                Observable.Timer(TimeSpan.FromMilliseconds(1000))
                     .Subscribe(__ => SceneLoader.Instance.GoSceneAsync("ResultScene").Forget());
             });
 
