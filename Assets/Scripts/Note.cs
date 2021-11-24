@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Note
 {
+    //判定前か後か
     public enum State
     {
         On,
@@ -17,6 +18,7 @@ public class Note
     private string m_Type; //ノーツのタイプ beautiful, ugly
     private NoteController m_NoteController;
     private GameObject m_NoteObject;
+    private bool m_IsRunning;
 
 
     public Note(float timing, int place, string type)
@@ -26,6 +28,7 @@ public class Note
         m_Place = place;
         m_Type = type;
         m_NoteController = new NoteController(this);
+        m_IsRunning = false;
     }
 
     public float Timing
@@ -85,6 +88,18 @@ public class Note
         set
         {
             m_NoteObject = value;
+        }
+    }
+
+    public bool IsRunning
+    {
+        get
+        {
+            return m_IsRunning;
+        }
+        set
+        {
+            m_IsRunning = value;
         }
     }
 

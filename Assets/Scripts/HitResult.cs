@@ -15,7 +15,7 @@ public class HitResult
 {
     public enum ResultState
     {
-        Good = 0, //配列で管理できるようにindexをつけておく
+        Good = 0, //リザルト画面のカウントテキストの扱いの時に配列で管理できるようindexをつけておく
         Failure = 1,
     }
 

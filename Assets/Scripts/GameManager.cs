@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UniRx;
 using UniRx.Triggers;
+using Cysharp.Threading.Tasks;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,19 +27,20 @@ public class GameManager : MonoBehaviour
     private readonly float ms_MarginTime = 1200f;
     private readonly float ms_CheckRange = 120f;
     private readonly float ms_BeatRange = 80f;
+    private readonly float ms_FlickStartRange = 0.1f;
     private readonly float ms_FlickRange = 0.2f;
 
     private List<Note> m_Notes;
     private bool m_IsPlaying;
-    private float m_StartTime;
+    private float m_GameStartTime;
     private float m_Distance;
     private int m_NoteIndex;
 
     //フリック関連メンバー変数
     private Vector3 m_StartMousePos;
     private Vector3 m_EndPos;
-    private float m_StartTiming;
-    private float m_EndTiming;
+    private float m_FlickStartTiming;
+    private float m_FlickEndTiming;
     private bool m_DoStartFlick;
 
     //音楽関連メンバー変数
@@ -83,6 +85,9 @@ public class GameManager : MonoBehaviour
         m_NoteIndex = 0;
         m_DoStartFlick = false;
 
+        //int place = -1;
+        //int nearNoteIndex = -1;
+
         //ノーツ読み込み後の処理 loaderクラスを用意してもいい？
         this
             .OnLoadMusicData
@@ -100,32 +105,58 @@ public class GameManager : MonoBehaviour
         this.UpdateAsObservable()
             .Where(_ => m_IsPlaying)
             .Where(_ => m_Notes.Count > m_NoteIndex)
-            .Where(_ => m_Notes[m_NoteIndex].Timing <= ((Time.time * 1000 - m_StartTime) + ms_MarginTime))
+            .Where(_ => m_Notes[m_NoteIndex].Timing <= ((Time.time * 1000 - m_GameStartTime) + ms_MarginTime))
             .Subscribe(_ =>
             {
                 m_Notes[m_NoteIndex].NoteController.Fire(m_Distance, ms_MarginTime);
                 m_NoteIndex++;
             });
 
+        //TODO: ここをGetMouseButtonにして、ポジションがノーツヒット位置に近いかどうかで判定する
+        //ここでもノーツ検索処理入れて近くにノーツがあるかどうかを確認した方が良さそう
+        //煩雑になってきたからJudgeControllerクラスとか作ってまとめた方がいいかも?
         this.UpdateAsObservable()
             .Where(_ => m_IsPlaying)
             .Where(_ => Input.GetMouseButtonDown(0))
             .Subscribe(_ =>
             {
                 m_StartMousePos = Input.mousePosition;
-                m_StartTiming = Time.time * 1000;
+                m_FlickStartTiming = Time.time * 1000;
                 m_DoStartFlick = true; //フリックスタートフラグを立てる
             });
 
+        //this.UpdateAsObservable()
+        //    .Where(_ => m_IsPlaying)
+        //    .Where(_ => m_DoStartFlick == false)
+        //    .Where(_ => Input.GetMouseButton(0))
+        //    .Where(_ =>
+        //    {
+        //        place = NearHitPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition).x);
+        //        nearNoteIndex = NearNoteExist(Time.time * 1000 - m_GameStartTime);
+        //        return place != -1 && nearNoteIndex != -1;
+        //    })
+        //    .Where(_ =>
+        //    {
+        //        return m_Notes[nearNoteIndex].NoteState == Note.State.On; //判定されてないものだけ
+        //    })
+        //    .Subscribe(_ =>
+        //    {
+        //        m_StartMousePos = Input.mousePosition;
+        //        m_FlickStartTiming = Time.time * 1000;
+        //        m_DoStartFlick = true; //フリックスタートフラグを立てる
+        //        Debug.Log("FlickStart");
+        //    });
+
         this.UpdateAsObservable()
             .Where(_ => m_IsPlaying)
-            .Where(_ => m_DoStartFlick) //フリックスタートしてるか
+            .Where(_ => m_DoStartFlick == true) //フリックスタートしてるか
             .Where(_ => Input.GetMouseButton(0))
             .Where(_ => Mathf.Abs(Input.mousePosition.x - m_StartMousePos.x) >= ms_FlickRange) //フリックしたか否か
             .Subscribe(_ =>
             {
+                Debug.Log("FlickEnd");
                 m_EndPos = Input.mousePosition;
-                m_EndTiming = Time.time * 1000;
+                m_FlickEndTiming = Time.time * 1000;
 
                 float timing;
                 string type;
@@ -135,7 +166,7 @@ public class GameManager : MonoBehaviour
                 place = CalcPlace(m_StartMousePos);
 
                 //タイミングの判定処理
-                timing = (m_EndTiming + m_StartTiming) / 2 - m_StartTime;
+                timing = (m_FlickEndTiming + m_FlickStartTiming) / 2 - m_GameStartTime;
 
                 if (m_EndPos.x - m_StartMousePos.x > 0) //右フリックの時
                 {
@@ -162,7 +193,7 @@ public class GameManager : MonoBehaviour
             {
                 //とりあえず遅らせてからシーン遷移
                 Observable.Timer(TimeSpan.FromMilliseconds(2000))
-                    .Subscribe(__ => SceneManager.LoadScene("ResultScene"));
+                    .Subscribe(__ => SceneLoader.Instance.GoSceneAsync("ResultScene").Forget());
             });
 
         LoadChart(); //ノーツ読み込み
@@ -220,7 +251,7 @@ public class GameManager : MonoBehaviour
     {
         m_AudioSource.Stop();
         m_AudioSource.Play();
-        m_StartTime = Time.time * 1000;
+        m_GameStartTime = Time.time * 1000;
         m_IsPlaying = true;
         Debug.Log("Start!!");
     }
@@ -266,6 +297,7 @@ public class GameManager : MonoBehaviour
         }
         else //スルーしてる時
         {
+            m_Notes[minDiffIndex].NoteState = Note.State.Off;
             Debug.Log("through");
         }
     }
@@ -292,6 +324,53 @@ public class GameManager : MonoBehaviour
         }
 
         return place;
+    }
+
+    private int NearHitPosition(float x)
+    {
+        int place = -1;
+
+        //xをもとにplaceに近いかどうか判定
+        //ここは結構シビアに取った方がいい
+
+        for(int i = 0; i < 3; i++)
+        {
+            float hitPosition = ms_Range * (i - 1);
+            if(Mathf.Abs(x - hitPosition) < ms_FlickStartRange)
+            {
+                place = i;
+            }
+        }
+
+        return place;
+    }
+
+    private int NearNoteExist(float timing)
+    {
+        int index = -1;
+
+        float minDiff = -1f;
+        int minDiffIndex = -1;
+
+        //該当するノーツを探す処理
+        for (int i = 0; i < m_Notes.Count; i++)
+        {
+            if (m_Notes[i].Timing > 0)
+            {
+                float diff = Math.Abs(m_Notes[i].Timing - timing);
+                if (minDiff == -1 || minDiff > diff)
+                {
+                    minDiff = diff;
+                    minDiffIndex = i;
+                }
+            }
+        }
+
+        if(minDiff != -1 && minDiff < ms_BeatRange)
+        {
+            index = minDiffIndex;
+        }
+        return index;
     }
 
 }

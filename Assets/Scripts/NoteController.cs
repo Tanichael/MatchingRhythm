@@ -36,7 +36,7 @@ public class NoteController
         m_FirstPos = m_Note.NoteObject.transform.position;
 
         m_Note.NoteObject.UpdateAsObservable()
-            .Where(_ => m_Note.NoteState == Note.State.On)
+            .Where(_ => m_Note.IsRunning == true)
             .Subscribe(_ =>
             {
                 m_Note.NoteObject.transform.position = new Vector3(m_FirstPos.x, m_FirstPos.y - m_Distance * (Time.time * 1000 - m_GoTime) / m_MarginTime, m_FirstPos.z);
@@ -50,6 +50,7 @@ public class NoteController
         m_GoTime = Time.time * 1000;
 
         m_Note.NoteState = Note.State.On;
+        m_Note.IsRunning = true;
     }
 
 

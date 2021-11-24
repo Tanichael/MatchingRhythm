@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UniRx;
 using UniRx.Triggers;
+using Cysharp.Threading.Tasks;
 
 public class ResultSceneManager : MonoBehaviour
 {
@@ -21,8 +22,7 @@ public class ResultSceneManager : MonoBehaviour
         m_MusicSelectButton.OnClickAsObservable()
             .Subscribe(_ =>
             {
-                SceneManager.LoadScene("MusicSelectScene");
-                m_MusicSelectButton.interactable = false;
+                SceneLoader.Instance.GoSceneAsync("MusicSelectScene").Forget();
             });
            
 

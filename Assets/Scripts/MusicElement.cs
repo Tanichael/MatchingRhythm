@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UniRx;
+using Cysharp.Threading.Tasks;
 
 public class MusicElement : MonoBehaviour
 {
@@ -56,8 +57,7 @@ public class MusicElement : MonoBehaviour
                 //シーン切り替え 読み込みどこ？
                 //シーン切り替えた後ロードして準備ができたら音楽を流す、って感じで良さそう
                 //つまりここではとりあえずシーンを切り替える
-                SceneManager.LoadScene("GameScene");
-                m_MusicSelectSceneController.Cover.gameObject.SetActive(true);
+                SceneLoader.Instance.GoSceneAsync("GameScene").Forget();
             });
     }
 
