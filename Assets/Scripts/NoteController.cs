@@ -4,8 +4,13 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 
+/// <summary>
+/// ノーツの動きについてまとめたクラス
+/// </summary>
 public class NoteController
 {
+    private readonly float ms_NoteStartScale = 0.2f;
+
     private Note m_Note;
     private Vector3 m_FirstPos;
 
@@ -40,6 +45,11 @@ public class NoteController
             .Subscribe(_ =>
             {
                 m_Note.NoteObject.transform.position = new Vector3(m_FirstPos.x, m_FirstPos.y - m_Distance * (Time.time * 1000 - m_GoTime) / m_MarginTime, m_FirstPos.z);
+                m_Note.NoteObject.transform.localScale =
+                    new Vector3(
+                        ms_NoteStartScale + (1f - ms_NoteStartScale) * Mathf.Sin(Mathf.PI / 2 * (Time.time * 1000 - m_GoTime) / m_MarginTime),
+                        ms_NoteStartScale + (1f - ms_NoteStartScale) * Mathf.Sin(Mathf.PI / 2 * (Time.time * 1000 - m_GoTime) / m_MarginTime),
+                        1);
             });
     }
 
