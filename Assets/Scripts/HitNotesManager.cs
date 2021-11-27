@@ -36,6 +36,7 @@ public class HitNotesManager : MonoBehaviour
         {
             if(hitResult.State == resultState)
             {
+                //判定結果のエフェクトを出す
                 GameObject resultObject = Instantiate(hitResult.ResultObject);
                 resultObject.SetActive(false);
                 resultObject.SetActive(true);

@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private string m_FilePath;
     [SerializeField] private string m_ClipPath;
-    [SerializeField] private Button m_Play;
-    [SerializeField] private Button m_SetChart;
 
     [SerializeField] GameObject m_Beautiful;
     [SerializeField] GameObject m_Ugly;
@@ -22,7 +20,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform m_BaseBeatPoint;
     [SerializeField] AudioSource m_AudioSource;
 
-    private readonly float ms_Range = 1.4f;
+    [SerializeField] ParticleSystem m_HitEffect;
+
+    private readonly float ms_Range = 1.5f;
     private readonly float ms_JudgeRange = 0.8f;
     private readonly float ms_MarginTime = 1200f;
     private readonly float ms_CheckRange = 120f;
@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
 
     //音楽関連メンバー変数
     private bool m_IsPause = false; //ポーズされてるか
+    private bool m_IsLoadResultStart = false; //リザルトシーンのロードが始まってるか
 
     private Subject<string> m_LoadMusicDataSubject = new Subject<string>(); //subject
 
@@ -189,11 +190,16 @@ public class GameManager : MonoBehaviour
             .Where(_ => m_IsPlaying == true) //ゲームがスタートした後かどうか
             .Where(_ => m_IsPause == false)
             .Where(_ => m_AudioSource.isPlaying == false)
+            .Where(_ => m_IsLoadResultStart == false)
             .Subscribe(_ =>
             {
                 //とりあえず遅らせてからシーン遷移
                 Observable.Timer(TimeSpan.FromMilliseconds(1000))
-                    .Subscribe(__ => SceneLoader.Instance.GoSceneAsync("ResultScene").Forget());
+                    .Subscribe(__ =>
+                    {
+                        m_IsLoadResultStart = true;
+                        SceneLoader.Instance.GoSceneAsync("ResultScene").Forget();
+                    });
             });
 
         LoadChart(); //ノーツ読み込み
@@ -208,6 +214,19 @@ public class GameManager : MonoBehaviour
         //ここの処理は選択画面の方に移すことになりそう
         string jsonText = DataManager.Instance.MusicData.NotesData.ToString();
         m_AudioSource.clip = DataManager.Instance.MusicData.AudioClip;
+
+        //スコアなどの値を初期値に戻す
+        DataManager.Instance.Score = 0f;
+        DataManager.Instance.Combo = 0;
+        DataManager.Instance.MaxCombo = 0;
+
+        foreach(var result in HitResultMasterData.Instance.HitResults)
+        {
+            if(DataManager.Instance.CountDictionary.ContainsKey(result.State))
+            {
+                DataManager.Instance.CountDictionary[result.State] = 0;
+            }
+        }
 
         JsonNode json = JsonNode.Parse(jsonText);
 
@@ -285,6 +304,9 @@ public class GameManager : MonoBehaviour
                 m_Notes[minDiffIndex].NoteState = Note.State.Off;
 
                 m_HitNotesSubject.OnNext(HitResult.ResultState.Good); //ここのメッセージとマスターデータのResultを揃えなきゃいけない
+                m_HitEffect.gameObject.transform.position = new Vector3((place-1) * ms_Range, -3f, 0f);
+                m_HitEffect.Play();
+                
             }
             else
             {
