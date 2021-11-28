@@ -48,7 +48,7 @@ public class ScoreController : MonoBehaviour
         }
 
         //failureの時、というかコンボが終わった時
-        if(hitResult.State == HitResult.ResultState.Failure)
+        if(hitResult.State == HitResult.ResultState.Bad)
         {
             if(maxCombo < combo)
             {

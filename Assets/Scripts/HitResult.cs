@@ -15,14 +15,17 @@ public class HitResult
 {
     public enum ResultState
     {
-        Good = 0, //リザルト画面のカウントテキストの扱いの時に配列で管理できるようindexをつけておく
-        Failure = 1,
+        Perfect = 0, //リザルト画面のカウントテキストの扱いの時に配列で管理できるようindexをつけておく
+        Good = 1,
+        Nice = 2,
+        Bad = 3
     }
 
     [SerializeField] private int m_Id;
     [SerializeField] private ResultState m_State;
     [SerializeField] private float m_ScoreRate;
     [SerializeField] private GameObject m_ResultObject;
+    [SerializeField] private float m_BeatRange;
 
     public int Id
     {
@@ -53,6 +56,14 @@ public class HitResult
         get
         {
             return m_ResultObject;
+        }
+    }
+
+    public float BeatRange
+    {
+        get
+        {
+            return m_BeatRange;
         }
     }
 
