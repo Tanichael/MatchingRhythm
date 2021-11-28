@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UniRx;
 
 /// <summary>
@@ -38,6 +39,7 @@ public class HitNotesManager : MonoBehaviour
             {
                 //判定結果のエフェクトを出す
                 GameObject resultObject = Instantiate(hitResult.ResultObject);
+                resultObject.layer = 12;
                 resultObject.SetActive(false);
                 resultObject.SetActive(true);
 

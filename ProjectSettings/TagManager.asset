@@ -16,8 +16,8 @@ TagManager:
   - Background
   - NoteViews
   - Cover
-  - 
-  - 
+  - Lines
+  - Judge
   - 
   - 
   - 
@@ -44,6 +44,9 @@ TagManager:
   - name: UI
     uniqueID: 3985675115
     locked: 0
+  - name: Lines
+    uniqueID: 2982885819
+    locked: 0
   - name: NoteViews
     uniqueID: 1870453257
     locked: 0
@@ -52,4 +55,7 @@ TagManager:
     locked: 0
   - name: Cover
     uniqueID: 3029075169
+    locked: 0
+  - name: Judge
+    uniqueID: 3306188249
     locked: 0

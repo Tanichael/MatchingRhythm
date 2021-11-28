@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
             .Where(_ => m_Notes[m_NoteIndex].Timing <= ((Time.time * 1000 - m_GameStartTime) + ms_MarginTime))
             .Subscribe(_ =>
             {
-                m_Notes[m_NoteIndex].NoteController.Fire(m_Distance, ms_MarginTime);
+                m_Notes[m_NoteIndex].NoteController.Fire(m_Distance, ms_Range, ms_MarginTime);
                 m_NoteIndex++;
             });
 
@@ -239,7 +239,8 @@ public class GameManager : MonoBehaviour
             Note note = new Note(timing, place, type);
 
             Vector3 spawnPoint = new Vector3();
-            spawnPoint = m_BaseSpawnPoint.position + new Vector3(ms_Range * (place-1f), 0f, 0f);
+            //spawnPoint = m_BaseSpawnPoint.position + new Vector3(ms_Range * (place-1f), 0f, 0f);
+            spawnPoint = m_BaseSpawnPoint.position;
 
             if (type == "beautiful")
             {
