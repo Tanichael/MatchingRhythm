@@ -9,6 +9,7 @@ using Cysharp.Threading.Tasks;
 public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private GameObject m_LoadingCover;
+    [SerializeField] private AudioSource m_AudioSource;
 
     private static SceneLoader m_Instance;
 
@@ -29,6 +30,10 @@ public class SceneLoader : MonoBehaviour
 
     public async UniTask GoSceneAsync(string scene)
     {
+        if(scene == "MusicSelectScene")
+        {
+            m_AudioSource.Play();
+        }
         m_LoadingCover.SetActive(true);
         //now loading ... の点の数を変える処理
         await SceneManager.LoadSceneAsync(scene);

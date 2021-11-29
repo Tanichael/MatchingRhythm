@@ -19,16 +19,18 @@ public class Note
     private NoteController m_NoteController;
     private GameObject m_NoteObject;
     private bool m_IsRunning;
+    private GameManager m_GameManager;
 
 
-    public Note(float timing, int place, string type)
+    public Note(float timing, int place, string type, GameManager gameManager)
     {
         m_NoteState = State.Off;
         m_Timing = timing;
         m_Place = place;
         m_Type = type;
-        m_NoteController = new NoteController(this);
+        m_NoteController = new NoteController(this, gameManager);
         m_IsRunning = false;
+        m_GameManager = gameManager;
     }
 
     public float Timing

@@ -10,9 +10,6 @@ using Cysharp.Threading.Tasks;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private string m_FilePath;
-    [SerializeField] private string m_ClipPath;
-
     [SerializeField] GameObject m_Beautiful;
     [SerializeField] GameObject m_Ugly;
 
@@ -57,6 +54,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //ノーツのヒットを管理するサブジェクト
+    private Subject<HitResult.ResultState> m_HitNotesSubject = new Subject<HitResult.ResultState>();
+
+    public Subject<HitResult.ResultState> HitNotesSubject
+    {
+        get
+        {
+            return m_HitNotesSubject;
+        }
+    }
+
+    public IObservable<HitResult.ResultState> OnHitNotes
+    {
+        get
+        {
+            return m_HitNotesSubject;
+        }
+    }
+
     //SoundEffectを管理するsubject
     private Subject<string> SoundEffectSubject = new Subject<string>();
 
@@ -65,17 +81,6 @@ public class GameManager : MonoBehaviour
         get
         {
             return SoundEffectSubject;
-        }
-    }
-
-    //ノーツのヒットを管理するサブジェクト
-    private Subject<HitResult.ResultState> m_HitNotesSubject = new Subject<HitResult.ResultState>();
-
-    public IObservable<HitResult.ResultState> OnHitNotes
-    {
-        get
-        {
-            return m_HitNotesSubject;
         }
     }
 
@@ -206,6 +211,9 @@ public class GameManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// ノーツのデータの読み込みと満点の計算を行い、DataManagerの初期化を行う関数
+    /// </summary>
     private void LoadChart()
     {
         m_Notes = new List<Note>();
@@ -215,18 +223,9 @@ public class GameManager : MonoBehaviour
         string jsonText = DataManager.Instance.MusicData.NotesData.ToString();
         m_AudioSource.clip = DataManager.Instance.MusicData.AudioClip;
 
-        //スコアなどの値を初期値に戻す
-        DataManager.Instance.Score = 0f;
-        DataManager.Instance.Combo = 0;
-        DataManager.Instance.MaxCombo = 0;
-
-        foreach(var result in HitResultMasterData.Instance.HitResults)
-        {
-            if(DataManager.Instance.CountDictionary.ContainsKey(result.State))
-            {
-                DataManager.Instance.CountDictionary[result.State] = 0;
-            }
-        }
+        //満点を計算しておく
+        float fullScore = 0f;
+        float baseScore = HitResultMasterData.Instance.BaseScore;
 
         JsonNode json = JsonNode.Parse(jsonText);
 
@@ -236,7 +235,7 @@ public class GameManager : MonoBehaviour
             int place = int.Parse(noteData["place"].Get<string>());
             string type = noteData["type"].Get<string>();
 
-            Note note = new Note(timing, place, type);
+            Note note = new Note(timing, place, type, this);
 
             Vector3 spawnPoint = new Vector3();
             spawnPoint = m_BaseSpawnPoint.position + new Vector3(ms_Range * (place-1f), 0f, 0f);
@@ -259,6 +258,28 @@ public class GameManager : MonoBehaviour
             }
 
             m_Notes.Add(note);
+        }
+
+        //Noteの数をDataManagerに保存
+        int notesCount = m_Notes.Count;
+
+        for(int i = 0; i < notesCount; i++)
+        {
+            fullScore += baseScore * GetComboRate((i + 1) / notesCount);
+        }
+
+        //スコアなどの値を初期値に戻す
+        DataManager.Instance.NotesCount = notesCount;
+        DataManager.Instance.Score = 0f;
+        DataManager.Instance.Combo = 0;
+        DataManager.Instance.MaxCombo = 0;
+        DataManager.Instance.FullScore = fullScore;
+        foreach (var result in HitResultMasterData.Instance.HitResults)
+        {
+            if (DataManager.Instance.CountDictionary.ContainsKey(result.State))
+            {
+                DataManager.Instance.CountDictionary[result.State] = 0;
+            }
         }
 
         m_LoadMusicDataSubject.OnNext("load"); //ロード完了を伝える
@@ -284,6 +305,12 @@ public class GameManager : MonoBehaviour
         //該当するノーツを探す処理
         for(int i = 0; i < m_Notes.Count; i++)
         {
+            if(m_Notes[i].NoteState == Note.State.Off)
+            {
+                //既に判定済みだった場合は飛ばす
+                continue;
+            }
+
             if (m_Notes[i].Timing > 0)
             {
                 float diff = Math.Abs(m_Notes[i].Timing - timing);
@@ -295,31 +322,18 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(minDiff != -1 & minDiff < ms_CheckRange) //スルーしてない時
+        if(minDiff != -1f && minDiff < ms_CheckRange && m_Notes[minDiffIndex].Place == place) //スルーしてない時
         {
-            if(minDiff < ms_BeatRange & m_Notes[minDiffIndex].Type == type & m_Notes[minDiffIndex].Place == place)
-            {
-                m_Notes[minDiffIndex].Timing = -1;
-                m_Notes[minDiffIndex].NoteObject.SetActive(false); //Noteクラスのstateを変えるとかでは？
-                m_Notes[minDiffIndex].NoteState = Note.State.Off;
+            HitResult.ResultState resultState = m_Notes[minDiffIndex].NoteController.Judge(minDiff, type);
 
-                m_HitNotesSubject.OnNext(HitResult.ResultState.Good); //ここのメッセージとマスターデータのResultを揃えなきゃいけない
-                m_HitEffect.gameObject.transform.position = new Vector3((place-1) * ms_Range, -3f, 0f);
+            if (resultState != HitResult.ResultState.Bad) //Badの時以外はエフェクトを出すようにする
+            {
+                m_HitEffect.gameObject.transform.position = new Vector3((place - 1) * ms_Range, -3f, 0f);
                 m_HitEffect.Play();
-                
-            }
-            else
-            {
-                m_Notes[minDiffIndex].Timing = -1;
-                m_Notes[minDiffIndex].NoteObject.SetActive(false);
-                m_Notes[minDiffIndex].NoteState = Note.State.Off;
-
-                m_HitNotesSubject.OnNext(HitResult.ResultState.Failure);
             }
         }
-        else //スルーしてる時
+        else //近くにノーツが存在しない時
         {
-            m_Notes[minDiffIndex].NoteState = Note.State.Off;
             Debug.Log("through");
         }
     }
@@ -393,6 +407,29 @@ public class GameManager : MonoBehaviour
             index = minDiffIndex;
         }
         return index;
+    }
+
+    /// <summary>
+    /// コンボ倍率を取得する関数
+    /// </summary>
+    /// <param name="ratio"></param>
+    /// <returns></returns>
+    public float GetComboRate(float ratio)
+    {
+        float rate = 1f;
+
+        ComboRate[] comboRates = ComboRateMasterData.Instance.ComboRates;
+
+        foreach (var comboRate in comboRates)
+        {
+            if (ratio > comboRate.Ratio)
+            {
+                break;
+            }
+            rate = comboRate.Rate;
+        }
+
+        return rate;
     }
 
 }

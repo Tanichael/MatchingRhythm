@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UniRx;
 
 /// <summary>
@@ -10,8 +11,9 @@ using UniRx;
 /// </summary>
 public class HitNotesManager : MonoBehaviour
 {
-    [SerializeField] GameManager m_GameManager;
-    [SerializeField] ScoreController m_ScoreController;
+    [SerializeField] private GameManager m_GameManager;
+    [SerializeField] private ScoreController m_ScoreController;
+    [SerializeField] private SpriteRenderer m_ResultSpriteRenderer;
 
     private HitResult[] m_HitResults;
 
@@ -37,15 +39,17 @@ public class HitNotesManager : MonoBehaviour
             if(hitResult.State == resultState)
             {
                 //判定結果のエフェクトを出す
-                GameObject resultObject = Instantiate(hitResult.ResultObject);
-                resultObject.SetActive(false);
-                resultObject.SetActive(true);
+                //ここはオブジェクトは常駐させておいてspriteを変更する方が良くない？
+                m_ResultSpriteRenderer.sprite = hitResult.ResultSprite;
+                m_ResultSpriteRenderer.gameObject.SetActive(false);
+                m_ResultSpriteRenderer.gameObject.SetActive(true);
 
                 Observable.Timer(TimeSpan.FromMilliseconds(200))
-                    .Subscribe(_ => resultObject.SetActive(false));
+                    .Subscribe(_ => m_ResultSpriteRenderer.gameObject.SetActive(false));
 
                 m_ScoreController.CalculateScore(hitResult);
             }
         }
+
     }
 }
