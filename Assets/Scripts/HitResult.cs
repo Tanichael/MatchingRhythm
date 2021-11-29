@@ -24,8 +24,9 @@ public class HitResult
     [SerializeField] private int m_Id;
     [SerializeField] private ResultState m_State;
     [SerializeField] private float m_ScoreRate;
-    [SerializeField] private GameObject m_ResultObject;
+    [SerializeField] private Sprite m_ResultSprite;
     [SerializeField] private float m_BeatRange;
+    [SerializeField] private bool m_IsCombo; //コンボ続投かどうか
 
     public int Id
     {
@@ -51,11 +52,11 @@ public class HitResult
         }
     }
 
-    public GameObject ResultObject
+    public Sprite ResultSprite
     {
         get
         {
-            return m_ResultObject;
+            return m_ResultSprite;
         }
     }
 
@@ -64,6 +65,14 @@ public class HitResult
         get
         {
             return m_BeatRange;
+        }
+    }
+
+    public bool IsCombo
+    {
+        get
+        {
+            return m_IsCombo;
         }
     }
 

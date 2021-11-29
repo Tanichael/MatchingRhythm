@@ -1,14 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// スコア関連データ更新クラス
 /// </summary>
 public class ScoreController : MonoBehaviour
 {
+    [SerializeField] private GameObject m_ComboGroup;
+    [SerializeField] private Text m_ComboText;
+    [SerializeField] private ImgsFillDynamic m_ImgsFillDynamic;
+
     /// <summary>
-    /// HitResultを引数にしてスコア関連のデータを更新するクラス
+    /// HitResultを引数にしてスコア関連のデータを更新する関数
     /// </summary>
     /// 
     /// <param name="hitResult">hitResult</param>
@@ -20,6 +25,8 @@ public class ScoreController : MonoBehaviour
         int combo = DataManager.Instance.Combo;
         int resultCount;
         int maxCombo = DataManager.Instance.MaxCombo;
+        int notesCount = DataManager.Instance.NotesCount;
+        float fullScore = DataManager.Instance.FullScore;
 
         if (DataManager.Instance.CountDictionary.ContainsKey(hitResult.State) == false)
         {
@@ -29,31 +36,20 @@ public class ScoreController : MonoBehaviour
             resultCount = DataManager.Instance.CountDictionary[hitResult.State];
         }
 
-        //ベーススコアをマスターデータからロード
-        float baseScore = HitResultMasterData.Instance.BaseScore;
-
-        //スコアの計算
-        float resultRate = CalculateResultRate(hitResult);
-        float comboRate = CalculateComboRate(hitResult);
-        score += baseScore * hitResult.ScoreRate * comboRate;
-
-        //スコアの更新
-        DataManager.Instance.Score = score;
-
-        //コンボ数の処理 暫定はgoodの時のみカウント
-        if(hitResult.State == HitResult.ResultState.Good)
+        //コンボ数の処理 IsCombo == true ならコンボが続く
+        if(hitResult.IsCombo == true)
         {
             combo += 1;
             DataManager.Instance.Combo = combo;
-        }
-
-        //failureの時、というかコンボが終わった時
-        if(hitResult.State == HitResult.ResultState.Bad)
-        {
-            if(maxCombo < combo)
+            if (maxCombo < combo)
             {
                 DataManager.Instance.MaxCombo = combo;
             }
+        }
+
+        //コンボが終わった時
+        if(hitResult.IsCombo == false)
+        {
             combo = 0;
             DataManager.Instance.Combo = combo;
         }
@@ -62,30 +58,31 @@ public class ScoreController : MonoBehaviour
         resultCount = resultCount + 1;
         DataManager.Instance.CountDictionary[hitResult.State] = resultCount;
 
-        Debug.Log("Score = " + score);
-        Debug.Log("Combo = " + combo);
-    }
+        //スコアの計算
+        float ratio = (float)(combo / notesCount); //全ノーツ数中の割合
 
-    /// <summary>
-    /// 判定倍率を計算する関数
-    /// </summary>
-    /// <param name="hitResult"></param>
-    /// <returns>判定倍率</returns>
-    private float CalculateResultRate(HitResult hitResult)
-    {
-        float resultRate = 1.0f;
-        return resultRate;
-    }
+        float baseScore = HitResultMasterData.Instance.BaseScore;
+        float scoreRate = hitResult.ScoreRate;
+        float comboRate = ComboRateMasterData.Instance.GetComboRate(ratio);
+        score += baseScore * scoreRate * comboRate;
 
-    /// <summary>
-    /// コンボ倍率を計算する関数
-    /// </summary>
-    /// <param name="hitResult"></param>
-    /// <returns>コンボ倍率</returns>
-    private float CalculateComboRate(HitResult hitResult)
-    {
-        float comboRate = 1f;
-        //全ノーツ数はDataManagerのMusicDataから計算する
-        return comboRate;
+        //スコアの更新
+        DataManager.Instance.Score = score;
+
+        //UI変更の処理
+        if (combo == 0)
+        {
+            m_ComboGroup.SetActive(false);
+        } else
+        {
+            m_ComboGroup.SetActive(true);
+
+            string comboText = combo.ToString();
+            m_ComboText.text = comboText;
+        }
+
+        float scoreRatio = score / fullScore;
+        m_ImgsFillDynamic.SetValue(scoreRatio, true);
+
     }
 }

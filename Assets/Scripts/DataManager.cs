@@ -7,6 +7,8 @@ public class DataManager : Singleton<DataManager>
     private int m_Combo = 0;
     private Dictionary<HitResult.ResultState, int> m_CountDictionary;
     private int m_MaxCombo = 0;
+    private int m_NotesCount = 0;
+    private float m_FullScore = 0f;
 
     public MusicData MusicData
     {
@@ -75,6 +77,31 @@ public class DataManager : Singleton<DataManager>
         {
             m_MaxCombo = value;
         }
+    }
+
+    public int NotesCount
+    {
+        get
+        {
+            return m_NotesCount;
+        }
+        set
+        {
+            m_NotesCount = value;
+        }
+    }
+
+    public float FullScore
+    {
+        get
+        {
+            return m_FullScore;
+        }
+        set
+        {
+            m_FullScore = value;
+        }
+          
     }
 
 }

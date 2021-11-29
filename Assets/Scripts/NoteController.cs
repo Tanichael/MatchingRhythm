@@ -10,7 +10,6 @@ public class NoteController
 {
     private readonly float ms_NoteStartScale = 0.2f;
     private readonly float ms_CheckRange = 120f;
-    private readonly float ms_BeatRange = 80f;
 
     private GameManager m_GameManager;
 
