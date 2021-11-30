@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c227f2f7e5f64b6295a985818151556, type: 3}
   m_Name: ComboRateMasterData
   m_EditorClassIdentifier: 
-  m_ComboRates: []
+  m_ComboRates:
+  - m_Ratio: 0.2
+    m_Rate: 1
+  - m_Ratio: 0.4
+    m_Rate: 1.2
+  - m_Ratio: 0.6
+    m_Rate: 1.4
+  - m_Ratio: 0.8
+    m_Rate: 1.7
+  - m_Ratio: 1
+    m_Rate: 2

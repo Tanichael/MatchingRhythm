@@ -10,6 +10,7 @@ public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private GameObject m_LoadingCover;
     [SerializeField] private AudioSource m_AudioSource;
+    [SerializeField] private AudioSource m_IsSelectedAudio;
 
     private static SceneLoader m_Instance;
 
@@ -34,6 +35,12 @@ public class SceneLoader : MonoBehaviour
         {
             m_AudioSource.Play();
         }
+
+        if (scene == "GameScene")
+        {
+            m_IsSelectedAudio.Play();
+        }
+
         m_LoadingCover.SetActive(true);
         //now loading ... の点の数を変える処理
         await SceneManager.LoadSceneAsync(scene);

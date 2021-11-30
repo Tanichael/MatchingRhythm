@@ -198,11 +198,11 @@ public class GameManager : MonoBehaviour
             .Where(_ => m_IsLoadResultStart == false)
             .Subscribe(_ =>
             {
+                m_IsLoadResultStart = true;
                 //とりあえず遅らせてからシーン遷移
                 Observable.Timer(TimeSpan.FromMilliseconds(1000))
                     .Subscribe(__ =>
                     {
-                        m_IsLoadResultStart = true;
                         SceneLoader.Instance.GoSceneAsync("ResultScene").Forget();
                     });
             });

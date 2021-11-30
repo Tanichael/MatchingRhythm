@@ -7,11 +7,12 @@ public class MusicSelectSceneController : MonoBehaviour
 {
     [SerializeField] private ScrollRect m_MusicSelectScrollRect;
     [SerializeField] private MusicElement m_MusicElement;
+    [SerializeField] private AudioSource m_MusicSelectAudio;
 
     private List<MusicElement> m_MusicElements = new List<MusicElement>();
 
-    private readonly float ms_HorizontalRange = 280f;
-    private readonly float ms_VerticalRange = 330f;
+    private readonly float ms_HorizontalRange = 320f;
+    private readonly float ms_VerticalRange = 380f;
 
     private MusicData[] m_MusicDataList;
 
@@ -20,6 +21,7 @@ public class MusicSelectSceneController : MonoBehaviour
         //m_MusicDataList = Resources.Load<MusicMasterData>("MusicMasterData").MusicDataList;
         m_MusicDataList = MusicMasterData.Instance.MusicDataList;
         MakeMusicElements(m_MusicDataList);
+        m_MusicSelectAudio.Play();
     }
 
     private void MakeMusicElements(MusicData[] musicDataList)
@@ -28,11 +30,14 @@ public class MusicSelectSceneController : MonoBehaviour
 
         foreach(var musicData in musicDataList)
         {
-            Debug.Log(index);
-            if(index == 0)
+            string titleText = musicData.Title.Replace(" ", "\n");
+            if (index == 0)
             {
                 m_MusicElements.Add(m_MusicElement);
                 index++;
+                m_MusicElement.MusicData = musicData;
+                
+                m_MusicElement.TitleText.text = titleText;
                 continue;
             }
             MusicElement musicElement = Instantiate(m_MusicElement, m_MusicSelectScrollRect.content, true);
@@ -44,12 +49,11 @@ public class MusicSelectSceneController : MonoBehaviour
             Debug.Log("down = " + down);
             Debug.Log("right = " + right);
 
-
             rectTransform.anchoredPosition += new Vector2(ms_HorizontalRange * right, -ms_VerticalRange * down);
 
             //MusicDataの設定
             musicElement.MusicData = musicData;
-            musicElement.TitleText.text = musicData.Title;
+            musicElement.TitleText.text = titleText;
 
             //リストに加える
             m_MusicElements.Add(musicElement);

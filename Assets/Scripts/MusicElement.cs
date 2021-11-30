@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UniRx;
+using UniRx.Triggers;
 using Cysharp.Threading.Tasks;
 
 public class MusicElement : MonoBehaviour
@@ -58,7 +59,9 @@ public class MusicElement : MonoBehaviour
                 //シーン切り替えた後ロードして準備ができたら音楽を流す、って感じで良さそう
                 //つまりここではとりあえずシーンを切り替える
                 SceneLoader.Instance.GoSceneAsync("GameScene").Forget();
+
             });
+
     }
 
     

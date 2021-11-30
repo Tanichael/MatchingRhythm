@@ -26,5 +26,13 @@ public class TitleSceneManager : MonoBehaviour
             {
                 m_SceneLoader.GoSceneAsync("ResultScene").Forget();
             });
+
+        //以下本番用
+        //this.UpdateAsObservable()
+        //    .Where(_ => Input.GetMouseButtonDown(0) == true)
+        //    .Subscribe(_ =>
+        //    {
+        //        m_SceneLoader.GoSceneAsync("MusicSelectScene").Forget();
+        //    });
     }
 }
