@@ -14,17 +14,45 @@ public class ResultSceneManager : MonoBehaviour
     [SerializeField] Text m_MoteText;
     [SerializeField] Text m_ComboText;
     [SerializeField] Text[] m_CountTexts;
-    [SerializeField] Button m_MusicSelectButton;
     [SerializeField] AudioSource m_ResultAudio;
+    [SerializeField] Button[] m_Buttons;
+    [SerializeField] Button m_MusicSelectButton;
+
+    private readonly float ms_CheckDist = 0.1f;
+    private readonly float ms_FinalX = 27f;
+    private readonly float ms_StartRange = 200f;
+
+    private float m_StartTime;
 
     private void OnEnable()
     {
+        m_StartTime = Time.time * 1000;
+
         m_MusicSelectButton.interactable = true;
         m_MusicSelectButton.OnClickAsObservable()
             .Subscribe(_ =>
             {
                 SceneLoader.Instance.GoSceneAsync("MusicSelectScene").Forget();
             });
+
+        this.UpdateAsObservable()
+               .Subscribe(_ =>
+               {
+                   int cnt = 0;
+                   foreach(var button in m_Buttons)
+                   {
+                       RectTransform rectTransform = button.transform as RectTransform;
+                       Vector2 finalPosition = new Vector2(ms_FinalX, rectTransform.anchoredPosition.y);
+                       if (Vector2.Distance(rectTransform.position, finalPosition) > ms_CheckDist)
+                       {
+                           if(Time.time * 1000 - m_StartTime > (cnt+1) * ms_StartRange)
+                           {
+                                MoveButton(button, finalPosition);
+                           }
+                       }
+                       cnt = cnt + 1;
+                   }
+               });
 
         m_ResultAudio.Play();
 
@@ -57,5 +85,11 @@ public class ResultSceneManager : MonoBehaviour
             }
             m_CountTexts[(int)hitResult.State].text = tempText;
         }
+    }
+
+    private void MoveButton(Button button, Vector2 finalPosition)
+    {
+        RectTransform currentRectTransform = (RectTransform)button.transform;
+        currentRectTransform.anchoredPosition = Vector2.Lerp(currentRectTransform.anchoredPosition, finalPosition, 0.1f);
     }
 }
