@@ -11,10 +11,11 @@ using Cysharp.Threading.Tasks;
 public class ResultSceneManager : MonoBehaviour
 {
     [SerializeField] Text m_TitleText;
-    [SerializeField] Text m_ScoreText;
+    [SerializeField] Text m_MoteText;
     [SerializeField] Text m_ComboText;
     [SerializeField] Text[] m_CountTexts;
     [SerializeField] Button m_MusicSelectButton;
+    [SerializeField] AudioSource m_ResultAudio;
 
     private void OnEnable()
     {
@@ -24,17 +25,23 @@ public class ResultSceneManager : MonoBehaviour
             {
                 SceneLoader.Instance.GoSceneAsync("MusicSelectScene").Forget();
             });
-           
+
+        m_ResultAudio.Play();
 
         string title = DataManager.Instance.MusicData.Title;
         float score = DataManager.Instance.Score;
         int maxCombo = DataManager.Instance.MaxCombo;
+        float fullScore = DataManager.Instance.FullScore;
         Dictionary<HitResult.ResultState, int> countDictionary = DataManager.Instance.CountDictionary;
 
         HitResult[] hitResults = HitResultMasterData.Instance.HitResults;
 
+        float moteIndex = Mathf.Round(score / fullScore * 100);
+
+        title = title.Replace(" ", "");
+
         m_TitleText.text = title;
-        m_ScoreText.text = score.ToString();
+        m_MoteText.text = moteIndex.ToString() + "％";
         m_ComboText.text = maxCombo.ToString();
 
         foreach(var hitResult in hitResults)

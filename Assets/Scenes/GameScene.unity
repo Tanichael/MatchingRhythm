@@ -394,7 +394,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -849,7 +849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2534816, g: 0.02300641, b: 0.4433962, a: 1}
+  m_Color: {r: 0.34901962, g: 0.14509805, b: 0.5411765, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1212,7 +1212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.25490198, g: 0.023529414, b: 0.43921572, a: 1}
+  m_Color: {r: 0.427451, g: 0.21568629, b: 0.5882353, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1541,18 +1541,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1899898029282573489, guid: 6604ce1cd5dac8c40b0b212a9a554f5f,
         type: 3}
+      propertyPath: IsUsingMaxColor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899898029282573489, guid: 6604ce1cd5dac8c40b0b212a9a554f5f,
+        type: 3}
+      propertyPath: PercentByColor.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899898029282573489, guid: 6604ce1cd5dac8c40b0b212a9a554f5f,
+        type: 3}
       propertyPath: PercentByColor.Array.data[0].b
-      value: 0.83982986
+      value: 0.8000001
       objectReference: {fileID: 0}
     - target: {fileID: 1899898029282573489, guid: 6604ce1cd5dac8c40b0b212a9a554f5f,
         type: 3}
       propertyPath: PercentByColor.Array.data[0].g
-      value: 0.4995995
+      value: 0.2901961
       objectReference: {fileID: 0}
     - target: {fileID: 1899898029282573489, guid: 6604ce1cd5dac8c40b0b212a9a554f5f,
         type: 3}
       propertyPath: PercentByColor.Array.data[0].r
-      value: 0.9716981
+      value: 0.9725491
       objectReference: {fileID: 0}
     - target: {fileID: 1899898029282573489, guid: 6604ce1cd5dac8c40b0b212a9a554f5f,
         type: 3}
@@ -2145,6 +2155,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7612665043634951428, guid: bd072e74f8b084d63bd0567f983a71db,
+        type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7612665043634951428, guid: bd072e74f8b084d63bd0567f983a71db,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.78039217
+      objectReference: {fileID: 0}
+    - target: {fileID: 7612665043634951428, guid: bd072e74f8b084d63bd0567f983a71db,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.8913732
+      objectReference: {fileID: 0}
+    - target: {fileID: 7612665043634951428, guid: bd072e74f8b084d63bd0567f983a71db,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.6084906
+      objectReference: {fileID: 0}
+    - target: {fileID: 7612665043634951428, guid: bd072e74f8b084d63bd0567f983a71db,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7612665043634951429, guid: bd072e74f8b084d63bd0567f983a71db,
         type: 3}
       propertyPath: m_Name
