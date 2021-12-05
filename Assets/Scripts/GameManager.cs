@@ -104,14 +104,7 @@ public class GameManager : MonoBehaviour
             .Subscribe(load =>
             {
                 Play();
-                Observable.Timer(TimeSpan.FromMilliseconds(ms_NoteMusicDiffTime))
-                    .Subscribe(_ =>
-                    {
-                        m_AudioSource.Stop();
-                        m_AudioSource.Play();
-                        Debug.Log("music start!");
-                        m_IsMusicStart = true;
-                    });
+                MusicTimer();
             });
 
         this.UpdateAsObservable()
@@ -193,6 +186,18 @@ public class GameManager : MonoBehaviour
 
         LoadChart(); //ノーツ読み込み
 
+    }
+
+    private void MusicTimer()
+    {
+        Observable.Timer(TimeSpan.FromMilliseconds(ms_NoteMusicDiffTime))
+                    .Subscribe(_ =>
+                    {
+                        m_AudioSource.Stop();
+                        m_AudioSource.Play();
+                        Debug.Log("music start!");
+                        m_IsMusicStart = true;
+                    });
     }
 
     /// <summary>
