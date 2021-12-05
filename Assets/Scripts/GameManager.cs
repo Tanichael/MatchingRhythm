@@ -103,8 +103,12 @@ public class GameManager : MonoBehaviour
             .Where(load => load == "load")
             .Subscribe(load =>
             {
-                Play();
-                MusicTimer();
+                Observable.Timer(TimeSpan.FromMilliseconds(2000))
+                    .Subscribe(__ =>
+                    {
+                        Play();
+                        MusicTimer();
+                    });
             });
 
         this.UpdateAsObservable()
