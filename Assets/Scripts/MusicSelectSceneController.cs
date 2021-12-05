@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MusicSelectSceneController : MonoBehaviour
 {
     [SerializeField] private ScrollRect m_MusicSelectScrollRect;
+    [SerializeField] private GameObject m_Content;
     [SerializeField] private MusicElement m_MusicElement;
     [SerializeField] private AudioSource m_MusicSelectAudio;
 
@@ -13,6 +14,7 @@ public class MusicSelectSceneController : MonoBehaviour
 
     private readonly float ms_HorizontalRange = 320f;
     private readonly float ms_VerticalRange = 380f;
+    private readonly float ms_MarginHeight = 250f;
 
     private MusicData[] m_MusicDataList;
 
@@ -27,6 +29,15 @@ public class MusicSelectSceneController : MonoBehaviour
     private void MakeMusicElements(MusicData[] musicDataList)
     {
         int index = 0;
+
+        RectTransform contentRectTransform = m_Content.transform as RectTransform;
+        if(contentRectTransform != null)
+        {
+            int size = musicDataList.Length;
+            int column = (size - 1) / 3;
+            float height = ms_MarginHeight * 2f + column * ms_VerticalRange;
+            contentRectTransform.sizeDelta = new Vector2(contentRectTransform.sizeDelta.x, height);
+        }
 
         foreach(var musicData in musicDataList)
         {

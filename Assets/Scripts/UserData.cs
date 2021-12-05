@@ -11,7 +11,17 @@ public class UserData : Singleton<UserData>
     /// <returns></returns>
     public float GetHighMoteIndex(int id)
     {
-        float highMoteIndex = PlayerPrefs.GetFloat(GetHighMoteIndexKeyFromId(id));
+        string key = GetHighMoteIndexKeyFromId(id);
+        float highMoteIndex;
+        if(PlayerPrefs.HasKey(key) == true)
+        {
+            highMoteIndex = PlayerPrefs.GetFloat(GetHighMoteIndexKeyFromId(id));
+
+        }
+        else
+        {
+            highMoteIndex = 0f;
+        }
         return highMoteIndex;
     }
 
@@ -28,7 +38,18 @@ public class UserData : Singleton<UserData>
     /// <returns></returns>
     public int GetHighCombo(int id)
     {
-        int highCombo = PlayerPrefs.GetInt(GetHighMoteIndexKeyFromId(id));
+        string key = GetHighComboKeyFromId(id);
+        int highCombo;
+        if (PlayerPrefs.HasKey(key) == true)
+        {
+            highCombo = PlayerPrefs.GetInt(key);
+
+        }
+        else
+        {
+            highCombo = 0;
+        }
+
         return highCombo;
     }
 

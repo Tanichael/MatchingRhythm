@@ -9,6 +9,7 @@ using Cysharp.Threading.Tasks;
 public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private GameObject m_LoadingCover;
+    [SerializeField] private GameObject m_TransparentCover;
     [SerializeField] private AudioSource m_AudioSource;
     [SerializeField] private AudioSource m_IsSelectedAudio;
 
@@ -44,6 +45,22 @@ public class SceneLoader : MonoBehaviour
         m_LoadingCover.SetActive(true);
         //now loading ... の点の数を変える処理
         await SceneManager.LoadSceneAsync(scene);
-        m_LoadingCover.SetActive(false);
+        Observable.Timer(TimeSpan.FromMilliseconds(200))
+                    .Subscribe(__ =>
+                    {
+                        m_LoadingCover.SetActive(false);
+                    });
+    }
+
+    public void TransparentCover()
+    {
+        m_TransparentCover.SetActive(false);
+        m_TransparentCover.SetActive(true);
+    }
+
+    public void TransparentUnCover()
+    {
+        m_TransparentCover.SetActive(true);
+        m_TransparentCover.SetActive(false);
     }
 }

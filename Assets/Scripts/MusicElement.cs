@@ -12,6 +12,7 @@ public class MusicElement : MonoBehaviour
     [SerializeField] private Button m_MusicButton;
     [SerializeField] private Text m_TitleText;
     [SerializeField] private MusicSelectSceneController m_MusicSelectSceneController;
+    [SerializeField] private PlayGroupController m_PlayGroupController;
 
     private MusicData m_MusicData;
 
@@ -53,13 +54,8 @@ public class MusicElement : MonoBehaviour
             .AsObservable()
             .Subscribe(_ =>
             {
-                //拡大みたいなの挟んだ方がよさそう、とりあえず暫定
-                DataManager.Instance.MusicData = m_MusicData;
-                //シーン切り替え 読み込みどこ？
-                //シーン切り替えた後ロードして準備ができたら音楽を流す、って感じで良さそう
-                //つまりここではとりあえずシーンを切り替える
-                SceneLoader.Instance.GoSceneAsync("GameScene").Forget();
-
+                SceneLoader.Instance.TransparentCover();
+                m_PlayGroupController.SetUp(m_MusicData);
             });
 
     }
