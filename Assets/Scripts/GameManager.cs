@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     private readonly float ms_Range = 1.5f;
     private readonly float ms_JudgeRange = 0.8f;
     private readonly float ms_MarginTime = 1200f;
+    private readonly float ms_NoteMusicDiffTime = 2000f;
     private readonly float ms_CheckRange = 120f;
     private readonly float ms_BeatRange = 80f;
     private readonly float ms_FlickStartRange = 0.1f;
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     private List<Note> m_Notes;
     private bool m_IsPlaying;
+    private bool m_IsMusicStart;
     private float m_GameStartTime;
     private float m_Distance;
     private int m_NoteIndex;
@@ -88,6 +90,7 @@ public class GameManager : MonoBehaviour
     {
         m_Distance = Math.Abs(m_BaseBeatPoint.position.y - m_BaseSpawnPoint.position.y);
         m_IsPlaying = false;
+        m_IsMusicStart = false;
         m_NoteIndex = 0;
         m_DoStartFlick = false;
 
@@ -98,15 +101,18 @@ public class GameManager : MonoBehaviour
         this
             .OnLoadMusicData
             .Where(load => load == "load")
-            .Subscribe(load => Play());
-
-        //m_Play.onClick
-        //    .AsObservable()
-        //    .Subscribe(_ => Play());
-
-        //m_SetChart.onClick
-        //    .AsObservable()
-        //    .Subscribe(_ => LoadChart());
+            .Subscribe(load =>
+            {
+                Play();
+                Observable.Timer(TimeSpan.FromMilliseconds(ms_NoteMusicDiffTime))
+                    .Subscribe(_ =>
+                    {
+                        m_AudioSource.Stop();
+                        m_AudioSource.Play();
+                        Debug.Log("music start!");
+                        m_IsMusicStart = true;
+                    });
+            });
 
         this.UpdateAsObservable()
             .Where(_ => m_IsPlaying)
@@ -114,13 +120,12 @@ public class GameManager : MonoBehaviour
             .Where(_ => m_Notes[m_NoteIndex].Timing <= ((Time.time * 1000 - m_GameStartTime) + ms_MarginTime))
             .Subscribe(_ =>
             {
+                Debug.Log("fire");
+
                 m_Notes[m_NoteIndex].NoteController.Fire(m_Distance, ms_MarginTime);
                 m_NoteIndex++;
             });
 
-        //TODO: ここをGetMouseButtonにして、ポジションがノーツヒット位置に近いかどうかで判定する
-        //ここでもノーツ検索処理入れて近くにノーツがあるかどうかを確認した方が良さそう
-        //煩雑になってきたからJudgeControllerクラスとか作ってまとめた方がいいかも?
         this.UpdateAsObservable()
             .Where(_ => m_IsPlaying)
             .Where(_ => Input.GetMouseButtonDown(0))
@@ -130,28 +135,6 @@ public class GameManager : MonoBehaviour
                 m_FlickStartTiming = Time.time * 1000;
                 m_DoStartFlick = true; //フリックスタートフラグを立てる
             });
-
-        //this.UpdateAsObservable()
-        //    .Where(_ => m_IsPlaying)
-        //    .Where(_ => m_DoStartFlick == false)
-        //    .Where(_ => Input.GetMouseButton(0))
-        //    .Where(_ =>
-        //    {
-        //        place = NearHitPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition).x);
-        //        nearNoteIndex = NearNoteExist(Time.time * 1000 - m_GameStartTime);
-        //        return place != -1 && nearNoteIndex != -1;
-        //    })
-        //    .Where(_ =>
-        //    {
-        //        return m_Notes[nearNoteIndex].NoteState == Note.State.On; //判定されてないものだけ
-        //    })
-        //    .Subscribe(_ =>
-        //    {
-        //        m_StartMousePos = Input.mousePosition;
-        //        m_FlickStartTiming = Time.time * 1000;
-        //        m_DoStartFlick = true; //フリックスタートフラグを立てる
-        //        Debug.Log("FlickStart");
-        //    });
 
         this.UpdateAsObservable()
             .Where(_ => m_IsPlaying)
@@ -180,19 +163,20 @@ public class GameManager : MonoBehaviour
                     beat(timing, place, type);
                     SoundEffectSubject.OnNext(type);
                 }
-                else if(m_EndPos.x - m_StartMousePos.x < 0) //左フリックの時
+                else if (m_EndPos.x - m_StartMousePos.x < 0) //左フリックの時
                 {
                     type = "ugly";
                     beat(timing, place, type);
                     SoundEffectSubject.OnNext(type);
                 }
-                
+
                 m_DoStartFlick = false; //フリック完了をフラグで管理
             });
 
         //再生が終わった時の処理
         this.UpdateAsObservable()
             .Where(_ => m_IsPlaying == true) //ゲームがスタートした後かどうか
+            .Where(_ => m_IsMusicStart == true) //音楽がスタートした後かどうか
             .Where(_ => m_IsPause == false)
             .Where(_ => m_AudioSource.isPlaying == false)
             .Where(_ => m_IsLoadResultStart == false)
@@ -229,7 +213,7 @@ public class GameManager : MonoBehaviour
 
         JsonNode json = JsonNode.Parse(jsonText);
 
-        foreach(var noteData in json["notes"])
+        foreach (var noteData in json["notes"])
         {
             float timing = float.Parse(noteData["timing"].Get<string>());
             int place = int.Parse(noteData["place"].Get<string>());
@@ -238,7 +222,7 @@ public class GameManager : MonoBehaviour
             Note note = new Note(timing, place, type, this);
 
             Vector3 spawnPoint = new Vector3();
-            spawnPoint = m_BaseSpawnPoint.position + new Vector3(ms_Range * (place-1f), 0f, 0f);
+            spawnPoint = m_BaseSpawnPoint.position + new Vector3(ms_Range * (place - 1f), 0f, 0f);
 
             if (type == "beautiful")
             {
@@ -263,7 +247,7 @@ public class GameManager : MonoBehaviour
         //Noteの数をDataManagerに保存
         int notesCount = m_Notes.Count;
 
-        for(int i = 0; i < notesCount; i++)
+        for (int i = 0; i < notesCount; i++)
         {
             fullScore += baseScore * GetComboRate((i + 1) / notesCount);
         }
@@ -289,8 +273,6 @@ public class GameManager : MonoBehaviour
 
     private void Play()
     {
-        m_AudioSource.Stop();
-        m_AudioSource.Play();
         m_GameStartTime = Time.time * 1000;
         m_IsPlaying = true;
         Debug.Log("Start!!");
@@ -303,9 +285,9 @@ public class GameManager : MonoBehaviour
         int minDiffIndex = -1;
 
         //該当するノーツを探す処理
-        for(int i = 0; i < m_Notes.Count; i++)
+        for (int i = 0; i < m_Notes.Count; i++)
         {
-            if(m_Notes[i].NoteState == Note.State.Off)
+            if (m_Notes[i].NoteState == Note.State.Off)
             {
                 //既に判定済みだった場合は飛ばす
                 continue;
@@ -322,7 +304,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(minDiff != -1f && minDiff < ms_CheckRange && m_Notes[minDiffIndex].Place == place) //スルーしてない時
+        if (minDiff != -1f && minDiff < ms_CheckRange && m_Notes[minDiffIndex].Place == place) //スルーしてない時
         {
             HitResult.ResultState resultState = m_Notes[minDiffIndex].NoteController.Judge(minDiff, type);
 
@@ -369,10 +351,10 @@ public class GameManager : MonoBehaviour
         //xをもとにplaceに近いかどうか判定
         //ここは結構シビアに取った方がいい
 
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             float hitPosition = ms_Range * (i - 1);
-            if(Mathf.Abs(x - hitPosition) < ms_FlickStartRange)
+            if (Mathf.Abs(x - hitPosition) < ms_FlickStartRange)
             {
                 place = i;
             }
@@ -402,7 +384,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(minDiff != -1 && minDiff < ms_BeatRange)
+        if (minDiff != -1 && minDiff < ms_BeatRange)
         {
             index = minDiffIndex;
         }

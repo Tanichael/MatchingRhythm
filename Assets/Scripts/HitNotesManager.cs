@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UniRx;
 
 /// <summary>
@@ -13,13 +12,29 @@ public class HitNotesManager : MonoBehaviour
 {
     [SerializeField] private GameManager m_GameManager;
     [SerializeField] private ScoreController m_ScoreController;
-    [SerializeField] private SpriteRenderer m_ResultSpriteRenderer;
+    [SerializeField] RectTransform m_ResultTextPoint;
 
     private HitResult[] m_HitResults;
+    private Dictionary<HitResult, GameObject> m_ResultTextDictionary;
 
     private void OnEnable()
     {
         m_HitResults = HitResultMasterData.Instance.HitResults;
+        m_ResultTextDictionary = new Dictionary<HitResult, GameObject>();
+
+        foreach (var hitResult in m_HitResults)
+        {
+            GameObject resultTextObject = Instantiate(hitResult.ResultText, m_ResultTextPoint);
+            resultTextObject.SetActive(false);
+            if (m_ResultTextDictionary.ContainsKey(hitResult) == false)
+            {
+                m_ResultTextDictionary.Add(hitResult, resultTextObject);
+            }
+            else
+            {
+                m_ResultTextDictionary[hitResult] = resultTextObject;
+            }
+        }
 
         m_GameManager
             .OnHitNotes
@@ -31,21 +46,21 @@ public class HitNotesManager : MonoBehaviour
     }
 
     //判定に応じて処理をする関数
+    //resultStateを渡すよりresultStateでhitResultインスタンス作った方がいい？
+    //HitResultはモデルとなるクラスだからインスタンス化することはしない。セットが決まってるから。
     private void OnHitNotes(HitResult.ResultState resultState)
     {
         //resultStateをもとに判定がどれか探す
-        foreach(var hitResult in m_HitResults)
+        foreach (var hitResult in m_HitResults)
         {
-            if(hitResult.State == resultState)
+            if (hitResult.State == resultState)
             {
                 //判定結果のエフェクトを出す
-                //ここはオブジェクトは常駐させておいてspriteを変更する方が良くない？
-                m_ResultSpriteRenderer.sprite = hitResult.ResultSprite;
-                m_ResultSpriteRenderer.gameObject.SetActive(false);
-                m_ResultSpriteRenderer.gameObject.SetActive(true);
+                m_ResultTextDictionary[hitResult].SetActive(false);
+                m_ResultTextDictionary[hitResult].SetActive(true);
 
                 Observable.Timer(TimeSpan.FromMilliseconds(200))
-                    .Subscribe(_ => m_ResultSpriteRenderer.gameObject.SetActive(false));
+                    .Subscribe(_ => m_ResultTextDictionary[hitResult].SetActive(false));
 
                 m_ScoreController.CalculateScore(hitResult);
             }

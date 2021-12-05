@@ -24,7 +24,7 @@ public class HitResult
     [SerializeField] private int m_Id;
     [SerializeField] private ResultState m_State;
     [SerializeField] private float m_ScoreRate;
-    [SerializeField] private Sprite m_ResultSprite;
+    [SerializeField] private GameObject m_ResultText;
     [SerializeField] private float m_BeatRange;
     [SerializeField] private bool m_IsCombo; //コンボ続投かどうか
 
@@ -52,11 +52,11 @@ public class HitResult
         }
     }
 
-    public Sprite ResultSprite
+    public GameObject ResultText
     {
         get
         {
-            return m_ResultSprite;
+            return m_ResultText;
         }
     }
 
