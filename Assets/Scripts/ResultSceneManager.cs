@@ -17,6 +17,7 @@ public class ResultSceneManager : MonoBehaviour
     [SerializeField] AudioSource m_ResultAudio;
     [SerializeField] Button[] m_Buttons;
     [SerializeField] Button m_MusicSelectButton;
+    [SerializeField] FullComboEffect m_FullComboEffect;
 
     private readonly float ms_CheckDist = 0.1f;
     private readonly float ms_FinalX = 27f;
@@ -60,6 +61,8 @@ public class ResultSceneManager : MonoBehaviour
         float score = DataManager.Instance.Score;
         int maxCombo = DataManager.Instance.MaxCombo;
         float fullScore = DataManager.Instance.FullScore;
+        int notesCount = DataManager.Instance.NotesCount;
+        int id = DataManager.Instance.MusicData.Id;
         Dictionary<HitResult.ResultState, int> countDictionary = DataManager.Instance.CountDictionary;
 
         HitResult[] hitResults = HitResultMasterData.Instance.HitResults;
@@ -67,6 +70,14 @@ public class ResultSceneManager : MonoBehaviour
         float moteIndex = Mathf.Round(score / fullScore * 100);
 
         title = title.Replace(" ", "");
+
+        //フルコンボかどうかの判定
+        if(notesCount == maxCombo)
+        {
+            m_FullComboEffect.gameObject.SetActive(true);
+            m_FullComboEffect.FullComboAudio.Stop();
+            m_FullComboEffect.FullComboAudio.Play();
+        }
 
         m_TitleText.text = title;
         m_MoteText.text = moteIndex.ToString() + "％";
@@ -85,6 +96,21 @@ public class ResultSceneManager : MonoBehaviour
             }
             m_CountTexts[(int)hitResult.State].text = tempText;
         }
+
+        //UserData更新処理
+        float highMoteIndex = UserData.Instance.GetHighMoteIndex(id);
+        int highCombo = UserData.Instance.GetHighCombo(id);
+
+        if(moteIndex > highMoteIndex)
+        {
+            UserData.Instance.SetHighMoteIndex(id, moteIndex);
+        }
+
+        if (maxCombo > highCombo)
+        {
+            UserData.Instance.SetHighCombo(id, maxCombo);
+        }
+
     }
 
     private void MoveButton(Button button, Vector2 finalPosition)
