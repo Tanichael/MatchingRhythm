@@ -18,7 +18,7 @@
 		{
 			"timing": "3139.240506329114",
 			"place": "2",
-			"type": "beautiful"
+			"type": "ugly"
 		},
 		{
 			"timing": "3518.987341772152",
@@ -28,7 +28,7 @@
 		{
 			"timing": "3898.73417721519",
 			"place": "0",
-			"type": "beautiful"
+			"type": "ugly"
 		},
 		{
 			"timing": "4278.481012658228",
@@ -43,12 +43,12 @@
 		{
 			"timing": "5037.974683544304",
 			"place": "2",
-			"type": "ugly"
+			"type": "beautiful"
 		},
 		{
 			"timing": "5417.721518987342",
 			"place": "2",
-			"type": "beautiful"
+			"type": "ugly"
 		},
 		{
 			"timing": "5797.46835443038",
@@ -63,7 +63,7 @@
 		{
 			"timing": "6556.962025316456",
 			"place": "0",
-			"type": "ugly"
+			"type": "beautiful"
 		},
 		{
 			"timing": "6936.708860759494",
@@ -73,22 +73,22 @@
 		{
 			"timing": "7316.455696202532",
 			"place": "1",
-			"type": "ugly"
+			"type": "beautiful"
 		},
 		{
 			"timing": "7696.202531645569",
 			"place": "0",
-			"type": "none"
+			"type": "ugly"
 		},
 		{
 			"timing": "8075.949367088608",
 			"place": "1",
-			"type": "none"
+			"type": "beautiful"
 		},
 		{
 			"timing": "8455.696202531646",
 			"place": "0",
-			"type": "none"
+			"type": "ugly"
 		},
 		{
 			"timing": "8835.443037974685",
@@ -108,7 +108,7 @@
 		{
 			"timing": "9974.683544303798",
 			"place": "1",
-			"type": "none"
+			"type": "ugly"
 		},
 		{
 			"timing": "10354.430379746835",
@@ -123,17 +123,17 @@
 		{
 			"timing": "11113.924050632912",
 			"place": "0",
-			"type": "none"
+			"type": "beautiful"
 		},
 		{
 			"timing": "11493.67088607595",
 			"place": "1",
-			"type": "none"
+			"type": "beautiful"
 		},
 		{
 			"timing": "11873.417721518988",
 			"place": "0",
-			"type": "ugly"
+			"type": "beautiful"
 		},
 		{
 			"timing": "12253.164556962025",
@@ -143,17 +143,17 @@
 		{
 			"timing": "12632.911392405063",
 			"place": "2",
-			"type": "ugly"
+			"type": "beautiful"
 		},
 		{
 			"timing": "13012.658227848102",
 			"place": "1",
-			"type": "beautiful"
+			"type": "ugly"
 		},
 		{
 			"timing": "13392.405063291139",
 			"place": "1",
-			"type": "beautiful"
+			"type": "ugly"
 		},
 		{
 			"timing": "13772.151898734177",
@@ -163,22 +163,22 @@
 		{
 			"timing": "14151.898734177215",
 			"place": "2",
-			"type": "none"
+			"type": "beautiful"
 		},
 		{
 			"timing": "14531.645569620254",
 			"place": "2",
-			"type": "ugly"
+			"type": "beautiful"
 		},
 		{
 			"timing": "14911.392405063292",
 			"place": "1",
-			"type": "ugly"
+			"type": "beautiful"
 		},
 		{
 			"timing": "15291.139240506329",
 			"place": "1",
-			"type": "none"
+			"type": "beautiful"
 		},
 		{
 			"timing": "15670.886075949367",
@@ -188,7 +188,7 @@
 		{
 			"timing": "16050.632911392406",
 			"place": "0",
-			"type": "beautiful"
+			"type": "ugly"
 		},
 		{
 			"timing": "16430.379746835442",
@@ -198,27 +198,27 @@
 		{
 			"timing": "16810.12658227848",
 			"place": "1",
-			"type": "ugly"
+			"type": "beautiful"
 		},
 		{
 			"timing": "17189.87341772152",
 			"place": "1",
-			"type": "ugly"
+			"type": "beautiful"
 		},
 		{
 			"timing": "17569.620253164558",
 			"place": "0",
-			"type": "ugly"
+			"type": "beautiful"
 		},
 		{
 			"timing": "17949.367088607596",
 			"place": "2",
-			"type": "none"
+			"type": "beautiful"
 		},
 		{
 			"timing": "18329.11392405063",
 			"place": "2",
-			"type": "ugly"
+			"type": "beautiful"
 		},
 		{
 			"timing": "18708.86075949367",
@@ -228,7 +228,7 @@
 		{
 			"timing": "19088.607594936708",
 			"place": "1",
-			"type": "none"
+			"type": "ugly"
 		},
 		{
 			"timing": "19468.354430379746",
@@ -238,7 +238,7 @@
 		{
 			"timing": "19848.101265822785",
 			"place": "0",
-			"type": "ugly"
+			"type": "beautiful"
 		},
 		{
 			"timing": "20227.848101265823",
@@ -248,95 +248,95 @@
 		{
 			"timing": "20607.59493670886",
 			"place": "2",
-			"type": "none"
+			"type": "beautiful"
 		},
 		{
-			"timing": "20987.3417721519",
+			"timing": "20797.46835443038",
 			"place": "1",
 			"type": "beautiful"
 		},
 		{
-			"timing": "21367.08860759494",
+			"timing": "20987.3417721519",
 			"place": "0",
-			"type": "beautiful"
+			"type": "ugly"
 		},
 		{
-			"timing": "21746.835443037977",
+			"timing": "21556.962025316458",
 			"place": "2",
 			"type": "ugly"
 		},
 		{
-			"timing": "22126.58227848101",
+			"timing": "21746.835443037977",
 			"place": "0",
-			"type": "none"
+			"type": "beautiful"
 		},
 		{
-			"timing": "22506.32911392405",
+			"timing": "22316.45569620253",
 			"place": "1",
 			"type": "ugly"
 		},
 		{
+			"timing": "22506.32911392405",
+			"place": "1",
+			"type": "beautiful"
+		},
+		{
 			"timing": "22886.07594936709",
 			"place": "1",
-			"type": "none"
+			"type": "ugly"
 		},
 		{
 			"timing": "23265.822784810127",
-			"place": "1",
+			"place": "0",
 			"type": "beautiful"
 		},
 		{
 			"timing": "23645.569620253165",
 			"place": "0",
+			"type": "ugly"
+		},
+		{
+			"timing": "23835.443037974685",
+			"place": "0",
 			"type": "beautiful"
 		},
 		{
 			"timing": "24025.316455696204",
-			"place": "0",
+			"place": "2",
 			"type": "ugly"
+		},
+		{
+			"timing": "24215.189873417723",
+			"place": "2",
+			"type": "beautiful"
 		},
 		{
 			"timing": "24405.063291139242",
 			"place": "0",
-			"type": "none"
-		},
-		{
-			"timing": "24784.810126582277",
-			"place": "2",
-			"type": "ugly"
-		},
-		{
-			"timing": "25164.556962025315",
-			"place": "2",
-			"type": "none"
-		},
-		{
-			"timing": "25544.303797468354",
-			"place": "0",
 			"type": "beautiful"
 		},
 		{
-			"timing": "25924.050632911392",
+			"timing": "24594.93670886076",
 			"place": "2",
-			"type": "none"
+			"type": "beautiful"
 		},
 		{
-			"timing": "26303.79746835443",
+			"timing": "24974.683544303796",
 			"place": "2",
 			"type": "ugly"
 		},
 		{
-			"timing": "26683.54430379747",
+			"timing": "25354.430379746835",
 			"place": "1",
 			"type": "beautiful"
 		},
 		{
-			"timing": "27063.291139240508",
+			"timing": "25734.177215189873",
 			"place": "2",
-			"type": "none"
+			"type": "beautiful"
 		},
 		{
-			"timing": "27443.037974683546",
+			"timing": "25924.050632911392",
 			"place": "0",
 			"type": "ugly"
 		},
