@@ -1422,6 +1422,7 @@ MonoBehaviour:
   - {fileID: 1426011117}
   - {fileID: 1800818177}
   m_MusicSelectButton: {fileID: 1800818177}
+  m_FullComboEffect: {fileID: 132000233}
 --- !u!1 &1085425137
 GameObject:
   m_ObjectHideFlags: 0

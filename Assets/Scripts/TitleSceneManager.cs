@@ -9,30 +9,35 @@ using Cysharp.Threading.Tasks;
 
 public class TitleSceneManager : MonoBehaviour
 {
-    [SerializeField] Button m_StartButton;
     [SerializeField] SceneLoader m_SceneLoader;
-    [SerializeField] Button m_GoResultButton;
+    [SerializeField] AudioSource m_TitleAudio;
+
+    private bool m_IsClick;
+    private bool m_LoadStart;
 
     private void OnEnable()
     {
-        m_StartButton.OnClickAsObservable()
-            .Subscribe(_ =>
-            {
-                m_SceneLoader.GoSceneAsync("MusicSelectScene").Forget();
-            });
-
-        m_GoResultButton.OnClickAsObservable()
-            .Subscribe(_ =>
-            {
-                m_SceneLoader.GoSceneAsync("ResultScene").Forget();
-            });
+        m_IsClick = false;
+        m_LoadStart = false;
 
         //以下本番用
-        //this.UpdateAsObservable()
-        //    .Where(_ => Input.GetMouseButtonDown(0) == true)
-        //    .Subscribe(_ =>
-        //    {
-        //        m_SceneLoader.GoSceneAsync("MusicSelectScene").Forget();
-        //    });
+        this.UpdateAsObservable()
+            .Where(_ => m_IsClick == false)
+            .Where(_ => Input.GetMouseButtonDown(0) == true)
+            .Subscribe(_ =>
+            {
+                m_TitleAudio.Play();
+                m_IsClick = true;
+            });
+        this.UpdateAsObservable()
+            .Where(_ =>
+            {
+                return (m_IsClick == true && m_TitleAudio.isPlaying == false && m_LoadStart == false);
+            })
+            .Subscribe(_ =>
+            {
+                m_LoadStart = true;
+                m_SceneLoader.GoSceneAsync("MusicSelectScene").Forget();
+            });
     }
 }
