@@ -19,7 +19,7 @@ MonoBehaviour:
     m_ScoreRate: 1
     m_ResultText: {fileID: 2486010218478449411, guid: 59458f774b93a44ac9b5dcc5e44fc6c3,
       type: 3}
-    m_BeatRange: 30
+    m_BeatRange: 40
     m_IsCombo: 1
   - m_Id: 1
     m_State: 1
