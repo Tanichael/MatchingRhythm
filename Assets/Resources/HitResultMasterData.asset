@@ -19,26 +19,26 @@ MonoBehaviour:
     m_ScoreRate: 1
     m_ResultText: {fileID: 2486010218478449411, guid: 59458f774b93a44ac9b5dcc5e44fc6c3,
       type: 3}
-    m_BeatRange: 40
+    m_BeatRange: 30
     m_IsCombo: 1
   - m_Id: 1
     m_State: 1
     m_ScoreRate: 0.6
     m_ResultText: {fileID: 913226562436681442, guid: feab7ddc0e0fb4484bf16ec0efad469a,
       type: 3}
-    m_BeatRange: 80
+    m_BeatRange: 45
     m_IsCombo: 1
   - m_Id: 2
     m_State: 2
     m_ScoreRate: 0.3
     m_ResultText: {fileID: 741826864724680461, guid: b2e1bebef6e224594974d2524d233f1f,
       type: 3}
-    m_BeatRange: 100
+    m_BeatRange: 60
     m_IsCombo: 0
   - m_Id: 3
     m_State: 3
     m_ScoreRate: 0
     m_ResultText: {fileID: 5682809735439206906, guid: 7a45e3210ab5146129089c905bd08758,
       type: 3}
-    m_BeatRange: 120
+    m_BeatRange: 80
     m_IsCombo: 0

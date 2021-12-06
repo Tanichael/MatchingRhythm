@@ -10,7 +10,7 @@ public class MusicSelectSceneController : MonoBehaviour
     [SerializeField] private MusicElement m_MusicElement;
     [SerializeField] private AudioSource m_MusicSelectAudio;
 
-    private List<MusicElement> m_MusicElements = new List<MusicElement>();
+    private List<MusicElement> m_MusicElements;
 
     private readonly float ms_HorizontalRange = 320f;
     private readonly float ms_VerticalRange = 380f;
@@ -20,7 +20,7 @@ public class MusicSelectSceneController : MonoBehaviour
 
     private void OnEnable()
     {
-        //m_MusicDataList = Resources.Load<MusicMasterData>("MusicMasterData").MusicDataList;
+        m_MusicElements = new List<MusicElement>();
         m_MusicDataList = MusicMasterData.Instance.MusicDataList;
         MakeMusicElements(m_MusicDataList);
         m_MusicSelectAudio.Play();
@@ -28,8 +28,6 @@ public class MusicSelectSceneController : MonoBehaviour
 
     private void MakeMusicElements(MusicData[] musicDataList)
     {
-        int index = 0;
-
         RectTransform contentRectTransform = m_Content.transform as RectTransform;
         if(contentRectTransform != null)
         {
@@ -39,38 +37,43 @@ public class MusicSelectSceneController : MonoBehaviour
             contentRectTransform.sizeDelta = new Vector2(contentRectTransform.sizeDelta.x, height);
         }
 
-        foreach(var musicData in musicDataList)
+        for(int index = 0; index < musicDataList.Length; index++)
         {
-            string titleText = musicData.Title.Replace(" ", "\n");
-            if (index == 0)
+            foreach (var musicData in musicDataList)
             {
-                m_MusicElements.Add(m_MusicElement);
-                index++;
-                m_MusicElement.MusicData = musicData;
-                
-                m_MusicElement.TitleText.text = titleText;
-                continue;
+                if (musicData.Id == index)
+                {
+                    string titleText = musicData.Title.Replace(" ", "\n");
+                    if (index == 0)
+                    {
+                        m_MusicElements.Add(m_MusicElement);
+                        index++;
+                        m_MusicElement.MusicData = musicData;
+
+                        m_MusicElement.TitleText.text = titleText;
+                        continue;
+                    }
+                    MusicElement musicElement = Instantiate(m_MusicElement, m_MusicSelectScrollRect.content, true);
+                    RectTransform rectTransform = musicElement.transform as RectTransform;
+
+                    int right = index % 3;
+                    int down = index / 3;
+
+                    Debug.Log("down = " + down);
+                    Debug.Log("right = " + right);
+
+                    rectTransform.anchoredPosition += new Vector2(ms_HorizontalRange * right, -ms_VerticalRange * down);
+
+                    //MusicDataの設定
+                    musicElement.MusicData = musicData;
+                    musicElement.TitleText.text = titleText;
+
+                    //リストに加える
+                    m_MusicElements.Add(musicElement);
+                }
             }
-            MusicElement musicElement = Instantiate(m_MusicElement, m_MusicSelectScrollRect.content, true);
-            RectTransform rectTransform = musicElement.transform as RectTransform;
-
-            int right = index % 3;
-            int down = index / 3;
-
-            Debug.Log("down = " + down);
-            Debug.Log("right = " + right);
-
-            rectTransform.anchoredPosition += new Vector2(ms_HorizontalRange * right, -ms_VerticalRange * down);
-
-            //MusicDataの設定
-            musicElement.MusicData = musicData;
-            musicElement.TitleText.text = titleText;
-
-            //リストに加える
-            m_MusicElements.Add(musicElement);
-
-            index++;
         }
+        
     }
 
 }
