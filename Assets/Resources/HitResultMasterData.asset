@@ -26,14 +26,14 @@ MonoBehaviour:
     m_ScoreRate: 0.6
     m_ResultText: {fileID: 913226562436681442, guid: feab7ddc0e0fb4484bf16ec0efad469a,
       type: 3}
-    m_BeatRange: 45
+    m_BeatRange: 60
     m_IsCombo: 1
   - m_Id: 2
     m_State: 2
     m_ScoreRate: 0.3
     m_ResultText: {fileID: 741826864724680461, guid: b2e1bebef6e224594974d2524d233f1f,
       type: 3}
-    m_BeatRange: 60
+    m_BeatRange: 70
     m_IsCombo: 0
   - m_Id: 3
     m_State: 3
